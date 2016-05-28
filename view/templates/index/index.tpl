@@ -71,4 +71,11 @@
         </h3>
         {include file="register_layout.tpl"}
     </div>
+    <hr>
+    <div class="row" id="login">
+        <h3 class="roboto-light">
+            Inicia Sesión
+        </h3>
+        {include file="login_form.tpl"}
+    </div>
 {/block}

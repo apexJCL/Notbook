@@ -1,5 +1,5 @@
 <div class="row">
-    <form class="col s12" method="post">
+    <form class="col s12" method="post" action="/">
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix teal-text">perm_identity</i>
@@ -31,8 +31,8 @@
         </div>
         <div class="row">
             <div class="input-field center">
-                <button class="btn waves-effect waves-light" type="submit" name="action">Quiero mi ¬ notbook
-                    <i class="material-icons right">send</i>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Quiero mi ¬book
+                    <i class="material-icons right">input</i>
                 </button>
             </div>
         </div>

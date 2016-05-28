@@ -2,19 +2,19 @@
 <html lang="es">
 <head>
     <!-- JQuery -->
-    <script src="vendor/components/jquery/jquery.js"></script>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="js/init.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="/js/init.js"></script>
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- Custom css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <meta charset="UTF-8">
     <title>¬book</title>
 </head>
@@ -24,19 +24,13 @@
     <div class="navbar-fixed">
         <nav class="teal">
             <div class="nav-wrapper">
-                <a href="/" class="brand-logo center"><img src="img/notbook.png" class="logo" alt=""></a>
+                <a href="/" class="brand-logo center"><img src="/img/notbook.png" class="logo" alt=""></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#demo">Demo</a></li>
-                    <li><a href="#about">¿Qué es notbook?</a></li>
-                    <li><a href="#register">Regístrate</a></li>
+                    {include file="menu.tpl"}
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <li><a href="#home">Inicio</a></li>
-                    <li><a href="#demo">Demo</a></li>
-                    <li><a href="#about">¿Qué es notbook?</a></li>
-                    <li><a href="#register">Regístrate</a></li>
+                    {include file="menu.tpl"}
                 </ul>
             </div>
         </nav>
@@ -62,7 +56,7 @@
                 <ul>
                     <li>
                         <a class="" href="https://github.com/apexJCL/Notbook">
-                            <img src="img/GitHub-Mark-Light-64px.png" alt="Github">
+                            <img src="/img/GitHub-Mark-Light-64px.png" alt="Github">
                         </a>
                     </li>
                 </ul>

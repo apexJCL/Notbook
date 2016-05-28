@@ -4,12 +4,14 @@ require_once 'Controller.php';
 
 class IndexController extends Controller{
     public function __construct(){
+        
         parent::__construct('index');
 
-        if(empty($_POST))
-            $this->index();
-        else
-            $this->register();
+        if(isset($_SESSION['user_logged_in']))
+            header('Location: /profile');
+
+        if(empty($_POST)) $this->index();
+        else $this->POSTHandler();
     }
 
 
@@ -41,13 +43,35 @@ en _aprender a desarrollar_...';
     }
     
     private function register(){
-        $result = Utils::register($_POST['email'], $_POST['password'], $_POST['password_ver']);
-        if($result > 0){ // Successful register, now create the profile
-            Utils::create_profile($_POST['name'], $_POST['last_name'], $result);
-            header('Location: profile');
-        } else {
+        $account = Utils::register($_POST['email'], $_POST['password'], $_POST['password_ver']);
+        if($account instanceof Account){
+            $profile = Utils::create_profile($_POST['name'], $_POST['last_name'], $account);
+            if($profile instanceof Profile){
+                Utils::LoginSuccessful($account, $profile);
+                header('Location: /profile');
+            }
+        } else $this->index();
+    }
+
+    private function POSTHandler(){
+        if(!isset($_POST['choice'])) {
             $this->index();
+        } else switch ($_POST['choice']){
+            case 'register':
+                $this->register();
+                break;
+            case 'login':
+                $this->login();
+                break;
         }
+    }
+
+    private function login(){
+        $result = Utils::login($_POST['email'], $_POST['password']);
+        if($result)
+            header('Location: /profile');
+        else
+            header('Location: /');
     }
 }
 

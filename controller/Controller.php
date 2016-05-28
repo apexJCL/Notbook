@@ -31,32 +31,18 @@ class Controller {
                 'development' => sprintf('%s://%s:%s@%s/%s', DB_DBMS, DB_USER, DB_PASSWORD, DB_HOST, DB_DATABASE)
             ]);
         });
-        $this->template_dir = strtolower($classname);
+        $this->template_dir = strtolower($classname).'/';
     }
-    /*
-    public function __get_request($request_url){
-        if(empty($request_url))
-            return explode('/', str_replace('/Portafolio/','',$_SERVER['REQUEST_URI']));
-        else
-            return explode('/', str_replace('/Portafolio/','',$request_url));
-    }
-    */
-
-    /*
-    public function Redirect(){
-        return sprintf('/Portafolio/%s/%s/', LoginModel::Role(User::find($_SESSION['user_id'])),$_SESSION['username']);
-    }
-    */
-
+    
     public function assign($key, $value){
         $this->smarty->assign($key, $value);
     }
 
     public function display($template){
-        $this->smarty->display($this->template_dir.'/'.$template);
+        $this->smarty->display($this->template_dir.$template);
     }
 
     public function fetch($template){
-        return $this->smarty->fetch($this->template_dir.'/'.$template);
+        return $this->smarty->fetch($this->template_dir.$template);
     }
 }

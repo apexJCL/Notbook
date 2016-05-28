@@ -1,41 +1,10 @@
-<?php
-/* Smarty version 3.1.29, created on 2016-05-28 16:00:31
-  from "/var/www/html/Notbook/view/templates/layout.tpl" */
-
-if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
-  'has_nocache_code' => false,
-  'version' => '3.1.29',
-  'unifunc' => 'content_574a06efc44933_15584202',
-  'file_dependency' => 
-  array (
-    '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
-    array (
-      0 => '/var/www/html/Notbook/view/templates/layout.tpl',
-      1 => 1464469230,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-    'file:menu.tpl' => 2,
-  ),
-),false)) {
-function content_574a06efc44933_15584202 ($_smarty_tpl) {
-$_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
-?>
 <!doctype html>
 <html lang="es">
 <head>
     <!-- JQuery -->
-    <?php echo '<script'; ?>
- src="/js/jquery.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- type="text/javascript" src="/js/materialize.min.js"><?php echo '</script'; ?>
->
-    <?php echo '<script'; ?>
- src="/js/init.js"><?php echo '</script'; ?>
->
+    <script src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="/js/init.js"></script>
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -58,14 +27,10 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
                 <a href="/" class="brand-logo center"><img src="/img/notbook.png" class="logo" alt=""></a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
-                    <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-
+                    {include file="{$baseurl}menu.tpl"}
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    <?php $_smarty_tpl->smarty->ext->_subtemplate->render($_smarty_tpl, "file:menu.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, true);
-?>
-
+                    {include file="{$baseurl}menu.tpl"}
                 </ul>
             </div>
         </nav>
@@ -75,15 +40,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 <main>
     <div class="section no-pad-bot" id="index-banner">
         <div class="container main-container">
-            <?php 
-$_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_1127603558574a06efc43088_83359172',
-  1 => false,
-  3 => 0,
-  2 => 0,
-));
-?>
-
+            {block name="body"}{/block}
         </div>
     </div>
 </main>
@@ -117,9 +74,4 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 </body>
-</html><?php }
-/* {block 'body'}  file:layout.tpl */
-function block_1127603558574a06efc43088_83359172($_smarty_tpl, $_blockParentStack) {
-}
-/* {/block 'body'} */
-}
+</html>

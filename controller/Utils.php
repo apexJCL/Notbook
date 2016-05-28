@@ -19,7 +19,7 @@ class Utils {
         $account->password = md5($password);
         $account->save();
 
-        return $account->id;
+        return $account;
     }
 
     /**
@@ -33,7 +33,33 @@ class Utils {
     }
 
     public static function create_profile($name, $last_name, $account_id){
-        $profile = new Profile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
-        $profile->save();
+        try{
+            $profile = new Profile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
+            $profile->save();
+            return $profile;
+        } catch (Exception $e){
+            return false;
+        }
+    }
+
+    public static function LoginSuccessful($account, $profile){
+        session_regenerate_id(true);
+        $_SESSION['user_logged_in'] = true;
+        $_SESSION['email'] = $account->email;
+        $_SESSION['name'] = $profile->name;
+    }
+
+    public static function login($email, $password){
+        $account = Account::find([
+            'conditions' => ['email' => $email, 'password' => md5($password)],
+            'readonly' => true
+        ]);
+        if(empty($account))
+            return false;
+        else {
+            $profile = Profile::find_by_pk($account->id);
+            self::LoginSuccessful($account, $profile);
+            return true;
+        }
     }
 }
