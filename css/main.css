@@ -1,0 +1,32 @@
+html, body {
+    background-color: #FAFAFA;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.logo {
+    max-width: 32px;
+    vertical-align: middle;
+}
+
+.roboto-light {
+    font-family: roboto;
+    font-weight: 100;
+}
+
+.custom-card {
+    padding: 5px;
+}
+
+.brand-logo-custom {
+    margin-left: 10px;
+}
+
+.inline {
+    display: inline-block;
+}

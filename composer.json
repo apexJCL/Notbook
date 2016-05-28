@@ -1,0 +1,13 @@
+{
+  
+    "require": {
+        "php-activerecord/php-activerecord": "v1.1.2",
+        "erusev/parsedown": "1.6.0",
+        "erusev/parsedown-extra": "0.7.1",
+        "smarty/smarty": "v3.1.29",
+        "smarty/smarty-documentation": "3.1.x-dev",
+        "components/jquery": "2.2.4",
+        "twbs/bootstrap": "v3.3.6",
+        "webfontkit/roboto": "1.0.0"
+    }
+}
