@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-28 00:58:37
+/* Smarty version 3.1.29, created on 2016-05-28 13:50:18
   from "/var/www/html/Notbook/view/templates/layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_5749338d223370_66148574',
+  'unifunc' => 'content_5749e86ae95c50_22944469',
   'file_dependency' => 
   array (
     '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
     array (
       0 => '/var/www/html/Notbook/view/templates/layout.tpl',
-      1 => 1464415112,
+      1 => 1464461418,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5749338d223370_66148574 ($_smarty_tpl) {
+function content_5749e86ae95c50_22944469 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!doctype html>
@@ -46,41 +46,44 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
     <!-- Custom css -->
     <link rel="stylesheet" href="css/main.css">
     <meta charset="UTF-8">
-    <title>NotBook</title>
+    <title>¬book</title>
 </head>
 <body>
 
 <header>
-
-    <nav class="teal">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center"><img src="img/notbook.png" class="logo" alt=""></a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#demo">Demo</a></li>
-                <li><a href="#about">¿Qué es notbook?</a></li>
-                <li><a href="#register">Regístrate</a></li>
-            </ul>
-        </div>
-    </nav>
-
+    <div class="navbar-fixed">
+        <nav class="teal">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo center"><img src="img/notbook.png" class="logo" alt=""></a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#about">¿Qué es notbook?</a></li>
+                    <li><a href="#register">Regístrate</a></li>
+                </ul>
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="#home">Inicio</a></li>
+                    <li><a href="#demo">Demo</a></li>
+                    <li><a href="#about">¿Qué es notbook?</a></li>
+                    <li><a href="#register">Regístrate</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 </header>
 
 <main>
     <div class="section no-pad-bot" id="index-banner">
-        <div class="container">
+        <div class="container main-container">
             <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_10758451065749338d2216e5_05889523',
+  0 => 'block_11769979205749e86ae92f24_13850122',
   1 => false,
   3 => 0,
   2 => 0,
 ));
 ?>
-
-        </div>
-
-        <div class="container" id="register">
 
         </div>
     </div>
@@ -90,25 +93,23 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
+                <h5 class="white-text">¬book</h5>
+                <p class="grey-text text-lighten-4">No es una libreta.</p>
             </div>
             <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
                 <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                    <li>
+                        <a class="" href="https://github.com/apexJCL/Notbook">
+                            <img src="img/GitHub-Mark-Light-64px.png" alt="Github">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2014 Copyright Text
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            © 2016 José Carlos López
         </div>
     </div>
 </footer>
@@ -119,7 +120,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 </body>
 </html><?php }
 /* {block 'body'}  file:layout.tpl */
-function block_10758451065749338d2216e5_05889523($_smarty_tpl, $_blockParentStack) {
+function block_11769979205749e86ae92f24_13850122($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'body'} */
 }

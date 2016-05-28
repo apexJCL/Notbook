@@ -30,3 +30,8 @@ main {
 .inline {
     display: inline-block;
 }
+
+.ulist ul li{
+    margin-left: 20px;
+    list-style-type: square;
+}

@@ -1,6 +1,10 @@
 <?php
 
-require_once 'config.php';
+if (session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+
+require_once 'Utils.php';
 
 if (session_status() == PHP_SESSION_NONE){
     session_start();
@@ -21,14 +25,12 @@ class Controller {
         $this->smarty->setConfigDir(SMARTYDIR.CONFIGS);
         $this->smarty->setCacheDir(SMARTYDIR.CACHE);
         $this->smarty->assign('baseurl',"http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
-        /* ActiveRecord Initializer
         ActiveRecord\Config::initialize(function ($cfg) {
             $cfg->set_model_directory(MODELDIR);
             $cfg->set_connections([
                 'development' => sprintf('%s://%s:%s@%s/%s', DB_DBMS, DB_USER, DB_PASSWORD, DB_HOST, DB_DATABASE)
             ]);
         });
-        */
         $this->template_dir = strtolower($classname);
     }
     /*
