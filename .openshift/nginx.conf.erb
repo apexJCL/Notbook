@@ -28,9 +28,18 @@ gzip_vary           on;
 
 server {
     listen  <%= ENV['OPENSHIFT_NGINX_IP'] %>:<%= ENV['OPENSHIFT_NGINX_PORT'] %>;
-    root    <%= ENV['OPENSHIFT_REPO_DIR'] %>/public;
+    root    <%= ENV['OPENSHIFT_REPO_DIR'] %>;
 
     location / {
         index  index.html index.htm;
+    }
+
+    # pass the PHP scripts to PHP-FPM
+    location ~ \.php$ {
+        fastcgi_pass unix:<%= ENV['OPENSHIFT_PHP_SOCKET'] %>;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+        include <%= ENV['OPENSHIFT_NGINX_DIR'] %>/usr/nginx-<%= ENV['OPENSHIFT_NGINX_VERSION'] %>/conf/fastcgi_params;
+        fastcgi_param  PHP_VALUE "auto_prepend_file=<%= ENV['OPENSHIFT_REPO_DIR'] %>config.php";
     }
 }
