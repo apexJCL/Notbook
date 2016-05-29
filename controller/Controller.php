@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE){
 }
 
 error_reporting(E_ALL);
-require 'vendor/autoload.php';
+require $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 
 class Controller {
     
