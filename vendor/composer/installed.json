@@ -1,0 +1,352 @@
+[
+    {
+        "name": "php-activerecord/php-activerecord",
+        "version": "v1.1.2",
+        "version_normalized": "1.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jpfuentes2/php-activerecord.git",
+            "reference": "5a957483801ecc41d95381e9868de7bb08f9be3a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jpfuentes2/php-activerecord/zipball/5a957483801ecc41d95381e9868de7bb08f9be3a",
+            "reference": "5a957483801ecc41d95381e9868de7bb08f9be3a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2013-04-26 21:01:08",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "ActiveRecord.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "php-activerecord is an open source ORM library based on the ActiveRecord pattern.",
+        "homepage": "http://www.phpactiverecord.org/",
+        "keywords": [
+            "activerecord",
+            "orm"
+        ]
+    },
+    {
+        "name": "erusev/parsedown",
+        "version": "1.6.0",
+        "version_normalized": "1.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/erusev/parsedown.git",
+            "reference": "3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/erusev/parsedown/zipball/3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7",
+            "reference": "3ebbd730b5c2cf5ce78bc1bf64071407fc6674b7",
+            "shasum": ""
+        },
+        "time": "2015-10-04 16:44:32",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Parsedown": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Emanuil Rusev",
+                "email": "hello@erusev.com",
+                "homepage": "http://erusev.com"
+            }
+        ],
+        "description": "Parser for Markdown.",
+        "homepage": "http://parsedown.org",
+        "keywords": [
+            "markdown",
+            "parser"
+        ]
+    },
+    {
+        "name": "erusev/parsedown-extra",
+        "version": "0.7.1",
+        "version_normalized": "0.7.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/erusev/parsedown-extra.git",
+            "reference": "0db5cce7354e4b76f155d092ab5eb3981c21258c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/erusev/parsedown-extra/zipball/0db5cce7354e4b76f155d092ab5eb3981c21258c",
+            "reference": "0db5cce7354e4b76f155d092ab5eb3981c21258c",
+            "shasum": ""
+        },
+        "require": {
+            "erusev/parsedown": "~1.4"
+        },
+        "time": "2015-11-01 10:19:22",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "ParsedownExtra": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Emanuil Rusev",
+                "email": "hello@erusev.com",
+                "homepage": "http://erusev.com"
+            }
+        ],
+        "description": "An extension of Parsedown that adds support for Markdown Extra.",
+        "homepage": "https://github.com/erusev/parsedown-extra",
+        "keywords": [
+            "markdown",
+            "markdown extra",
+            "parsedown",
+            "parser"
+        ]
+    },
+    {
+        "name": "smarty/smarty",
+        "version": "v3.1.29",
+        "version_normalized": "3.1.29.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/smarty-php/smarty.git",
+            "reference": "35480f10e7ce9b0fdaf23d3799d7b79463919b1e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/smarty-php/smarty/zipball/35480f10e7ce9b0fdaf23d3799d7b79463919b1e",
+            "reference": "35480f10e7ce9b0fdaf23d3799d7b79463919b1e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "time": "2015-12-21 01:57:06",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "libs/Smarty.class.php",
+                "libs/SmartyBC.class.php",
+                "libs/sysplugins/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Monte Ohrt",
+                "email": "monte@ohrt.com"
+            },
+            {
+                "name": "Uwe Tews",
+                "email": "uwe.tews@googlemail.com"
+            },
+            {
+                "name": "Rodney Rehm",
+                "email": "rodney.rehm@medialize.de"
+            }
+        ],
+        "description": "Smarty - the compiling PHP template engine",
+        "homepage": "http://www.smarty.net",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "smarty/smarty-documentation",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/smarty-php/smarty-documentation.git",
+            "reference": "784782e12abae12ae86ba9afae3e6b9e8bc476b7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/smarty-php/smarty-documentation/zipball/784782e12abae12ae86ba9afae3e6b9e8bc476b7",
+            "reference": "784782e12abae12ae86ba9afae3e6b9e8bc476b7",
+            "shasum": ""
+        },
+        "time": "2015-06-02 02:50:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.1.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0"
+        ],
+        "authors": [
+            {
+                "name": "Monte Ohrt",
+                "email": "monte@ohrt.com"
+            },
+            {
+                "name": "Uwe Tews",
+                "email": "uwe.tews@googlemail.com"
+            },
+            {
+                "name": "Rodney Rehm",
+                "email": "rodney.rehm@medialize.de"
+            }
+        ],
+        "description": "Smarty Documentation Sources",
+        "homepage": "http://www.smarty.net",
+        "keywords": [
+            "templating"
+        ]
+    },
+    {
+        "name": "components/jquery",
+        "version": "2.2.4",
+        "version_normalized": "2.2.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/components/jquery.git",
+            "reference": "981036fcb56668433a7eb0d1e71190324b4574df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/components/jquery/zipball/981036fcb56668433a7eb0d1e71190324b4574df",
+            "reference": "981036fcb56668433a7eb0d1e71190324b4574df",
+            "shasum": ""
+        },
+        "time": "2016-05-25 06:43:59",
+        "type": "component",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "jquery.js"
+                ],
+                "files": [
+                    "jquery.min.js",
+                    "jquery.min.map",
+                    "jquery-migrate.js",
+                    "jquery-migrate.min.js"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "John Resig",
+                "email": "jeresig@gmail.com"
+            }
+        ],
+        "description": "jQuery JavaScript Library",
+        "homepage": "http://jquery.com"
+    },
+    {
+        "name": "twbs/bootstrap",
+        "version": "v3.3.6",
+        "version_normalized": "3.3.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twbs/bootstrap.git",
+            "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/81df608a40bf0629a1dc08e584849bb1e43e0b7a",
+            "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a",
+            "shasum": ""
+        },
+        "replace": {
+            "twitter/bootstrap": "self.version"
+        },
+        "time": "2015-11-24 19:37:05",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jacob Thornton",
+                "email": "jacobthornton@gmail.com"
+            },
+            {
+                "name": "Mark Otto",
+                "email": "markdotto@gmail.com"
+            }
+        ],
+        "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+        "homepage": "http://getbootstrap.com",
+        "keywords": [
+            "JS",
+            "css",
+            "framework",
+            "front-end",
+            "less",
+            "mobile-first",
+            "responsive",
+            "web"
+        ]
+    },
+    {
+        "name": "webfontkit/roboto",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/webfontkit/roboto.git",
+            "reference": "67d303e04ed9441b07b3e81468aed7b600e84606"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/webfontkit/roboto/zipball/67d303e04ed9441b07b3e81468aed7b600e84606",
+            "reference": "67d303e04ed9441b07b3e81468aed7b600e84606",
+            "shasum": ""
+        },
+        "time": "2014-08-20 20:07:31",
+        "type": "library",
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "description": "Roboto has a dual nature. It has a mechanical skeleton and the forms are largely geometric. At the same time, the font features friendly and open curves. While some grotesks distort their letterforms to force a rigid rhythm, Roboto doesn’t compromise, allowing letters to be settled into their natural width. This makes for a more natural reading rhythm more commonly found in humanist and serif types.",
+        "homepage": "http://www.google.com/fonts/specimen/Roboto"
+    }
+]
