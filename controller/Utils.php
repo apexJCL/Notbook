@@ -58,7 +58,7 @@ class Utils {
         if(empty($account))
             return false;
         else {
-            $profile = Profile::find_by_pk($account->id);
+            $profile = Profile::find($account->id);
             self::LoginSuccessful($account, $profile);
             return true;
         }
