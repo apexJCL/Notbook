@@ -1,7 +1,8 @@
 {extends file="layout.tpl"}
 {block name="body"}
-    <link rel="stylesheet" href="css/github.css">
-    <script src="js/highlight.pack.js"></script>
+    <link rel="stylesheet" href="/css/github.css">
+    <script src="/js/highlight.pack.js"></script>
+    <script src="/js/main.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <div id="home" class="section">
         <h1 class="">
