@@ -14,7 +14,7 @@ class UserProfile extends Controller{
             return;
         }
 
-        if(isset($_POST['action'])){
+        if(isset($_POST['request'])){
             $this->POSTHandler();
         }
 
@@ -30,8 +30,14 @@ class UserProfile extends Controller{
             case 'notbooks':
                 $this->notbooks();
                 break;
+            case 'edit':
+                $this->edit();
+                break;
             case 'settings':
                 $this->settings();
+                break;
+            case 'new-notbook':
+                $this->create_notbook();
                 break;
             case 'logout':
                 $this->logout();
@@ -62,7 +68,37 @@ class UserProfile extends Controller{
     }
 
     private function settings(){
-        
+        $result = [
+            'response' => 'ok',
+            'data' => $this->fetch('settings.tpl')
+        ];
+        echo json_encode($result);
+        exit;
+    }
+
+    private function create_notbook(){
+        $result = [];
+        parse_str($_POST['settings'], $notbookSettings);
+        echo 'Created';
+        exit;
+    }
+
+    private function edit(){
+        $result =  [];
+        $notbook = Notbook::find(['conditions' => [
+            'profile_id' => 1,
+            'id' => $_POST['nid']
+        ]]);
+        if(empty($notbook)){
+            $result['response'] = 'error';
+            $result['message'] = 'Notbook no encontrada pid '.Notbook::connection()->last_query;
+        } else {
+            $this->assign('notbook', $notbook);
+            $result['data'] = $this->fetch('editor.tpl');
+            $result['response'] = 'ok';
+        }
+        echo json_encode($result);
+        exit;
     }
 }
 

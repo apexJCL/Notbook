@@ -39,3 +39,12 @@ main {
 .center {
     align-content: center;
 }
+
+.min300 {
+    min-height:300px;
+}
+
+.fullscreen {
+    min-width: 100%;
+    margin: auto 0px;
+}

@@ -1,5 +1,5 @@
 <div class="row">
-    <form class="col s12" method="post" id="register_form">
+    <form  class="col s12" method="post" id="register_form">
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix teal-text">perm_identity</i>
