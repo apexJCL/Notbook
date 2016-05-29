@@ -46,7 +46,7 @@ en _aprender a desarrollar_...';
         $account = Utils::register($_POST['email'], $_POST['password'], $_POST['password_ver']);
         if($account instanceof Account){
             $profile = Utils::create_profile($_POST['name'], $_POST['last_name'], $account);
-            if($profile instanceof Profile){
+            if($profile instanceof UserProfile){
                 Utils::LoginSuccessful($account, $profile);
                 header('Location: /profile');
             }

@@ -34,7 +34,7 @@ class Utils {
 
     public static function create_profile($name, $last_name, $account_id){
         try{
-            $profile = new Profile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
+            $profile = new UserProfile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
             $profile->save();
             return $profile;
         } catch (Exception $e){
@@ -47,6 +47,7 @@ class Utils {
         $_SESSION['user_logged_in'] = true;
         $_SESSION['email'] = $account->email;
         $_SESSION['name'] = $profile->name;
+        $_SESSION['pid'] = $profile->id;
     }
 
     public static function login($email, $password){
@@ -61,5 +62,13 @@ class Utils {
             self::LoginSuccessful($account, $profile);
             return true;
         }
+    }
+
+    public static function logout(){
+        /*
+        $account = Account::find_by_email($_SESSION['email']);
+        $account->last_session =
+        */
+        session_destroy();
     }
 }

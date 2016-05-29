@@ -32,6 +32,7 @@ class Controller {
             ]);
         });
         $this->template_dir = strtolower($classname).'/';
+        $this->assign('baseurl', $this->template_dir);
     }
     
     public function assign($key, $value){
