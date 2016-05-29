@@ -11,7 +11,7 @@ if (session_status() == PHP_SESSION_NONE){
 }
 
 error_reporting(E_ALL);
-require PATH.'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 class Controller {
     
