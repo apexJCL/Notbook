@@ -22,7 +22,7 @@ $(document).ready(function () {
         });
     });
 
-    $('.logout').click(function () {
+    $('.#logout').click(function () {
         $.ajax({
             url: app_url,
             type: 'POST',
