@@ -65,7 +65,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2016 José Carlos López
+            <strong>© 2016 José Carlos López</strong> - Made with :v
         </div>
     </div>
 </footer>
