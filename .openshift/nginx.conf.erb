@@ -31,7 +31,7 @@ server {
     root    <%= ENV['OPENSHIFT_REPO_DIR'] %>;
 
     location / {
-        index  index.html index.htm;
+        index index.php  index.html index.htm;
     }
 
     # pass the PHP scripts to PHP-FPM
