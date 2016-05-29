@@ -30,6 +30,9 @@ class UserProfile extends Controller{
             case 'notbooks':
                 $this->notbooks();
                 break;
+            case 'settings':
+                $this->settings();
+                break;
             case 'logout':
                 $this->logout();
                 breaK;
@@ -56,6 +59,10 @@ class UserProfile extends Controller{
         ];
         echo json_encode($result);
         exit;
+    }
+
+    private function settings(){
+        
     }
 }
 

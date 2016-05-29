@@ -1,7 +1,10 @@
 $(document).ready(function () {
+
+    var app_url = '/app/profile/UserProfile.php';
+
     $('.my-notbooks').click(function () {
         $.ajax({
-            url: '/app/profile/UserProfile.php',
+            url: app_url,
             type: 'POST',
             data: {
                 'action': 'request',
@@ -21,7 +24,7 @@ $(document).ready(function () {
 
     $('.logout').click(function () {
         $.ajax({
-            url: '/app/profile/UserProfile.php',
+            url: app_url,
             type: 'POST',
             data: {
                 'action': 'request',
@@ -33,6 +36,23 @@ $(document).ready(function () {
                     if(d.redirect == 'true')
                         document.location.href="/";
                 }
+            },
+            error: function () {
+                alert('Error :(');
+            }
+        });
+    });
+
+    $('#settings').click(function () {
+        $.ajax({
+            url: app_url,
+            type: 'POST',
+            data: {
+                'action': 'request',
+                'request': 'settings'
+            },
+            success: function (data) {
+                console.debug(data);
             },
             error: function () {
                 alert('Error :(');
