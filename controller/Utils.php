@@ -34,7 +34,7 @@ class Utils {
 
     public static function create_profile($name, $last_name, $account_id){
         try{
-            $profile = new UserProfile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
+            $profile = new Profile(['id' => $account_id, 'name' => $name, 'last_name' => $last_name]);
             $profile->save();
             return $profile;
         } catch (Exception $e){
