@@ -5,7 +5,6 @@ class Utils {
     public static function register($email, $password, $password_ver){
         if (!self::isValidEmail($email))
             return -1; // Invalid Email
-
         $account = Account::find_by_email($email);
 
         if(!empty($account))
