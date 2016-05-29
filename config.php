@@ -26,7 +26,7 @@ if (getenv('OPENSHIFT_APP_NAME') === false) {
     define('CONFIGS', 'configs/');
     define('DB_DBMS', 'mysql');
     define('DB_DATABASE', 'notbook');
-    define('DB_USER', 'reander');
-    define('DB_PASSWORD', 'parsing');
+    define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+    define('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
     define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
 }
