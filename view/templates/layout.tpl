@@ -3,8 +3,11 @@
 <head>
     <!-- JQuery -->
     <script src="/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="/js/materialize.min.js"></script>
     <script src="/js/init.js"></script>
+
+    <!-- JQuery Validate -->
+    <script src="/js/jquery.validate.min.js"></script>
 
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

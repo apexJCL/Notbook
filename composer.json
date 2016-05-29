@@ -1,10 +1,9 @@
 {
-  
     "require": {
-        "php-activerecord/php-activerecord": "v1.1.2",
         "erusev/parsedown": "1.6.0",
         "erusev/parsedown-extra": "0.7.1",
         "smarty/smarty": "v3.1.29",
         "components/jquery": "2.2.4",
+        "php-activerecord/php-activerecord": "dev-master"
     }
 }

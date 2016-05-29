@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-29 01:00:56
+/* Smarty version 3.1.29, created on 2016-05-29 08:55:50
   from "/var/www/html/Notbook/view/templates/layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_574a85987e7ee7_97756420',
+  'unifunc' => 'content_574af4e6dfd6e9_20676512',
   'file_dependency' => 
   array (
     '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
     array (
       0 => '/var/www/html/Notbook/view/templates/layout.tpl',
-      1 => 1464501655,
+      1 => 1464530146,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:menu.tpl' => 2,
   ),
 ),false)) {
-function content_574a85987e7ee7_97756420 ($_smarty_tpl) {
+function content_574af4e6dfd6e9_20676512 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!doctype html>
@@ -31,10 +31,15 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
  src="/js/jquery.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
- type="text/javascript" src="/js/materialize.min.js"><?php echo '</script'; ?>
+ src="/js/materialize.min.js"><?php echo '</script'; ?>
 >
     <?php echo '<script'; ?>
  src="/js/init.js"><?php echo '</script'; ?>
+>
+
+    <!-- JQuery Validate -->
+    <?php echo '<script'; ?>
+ src="/js/jquery.validate.min.js"><?php echo '</script'; ?>
 >
 
     <!--Import Google Icon Font-->
@@ -77,7 +82,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
         <div class="container main-container">
             <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_619260594574a85987e70d3_27490002',
+  0 => 'block_980672758574af4e6dfc197_21841090',
   1 => false,
   3 => 0,
   2 => 0,
@@ -119,7 +124,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 </body>
 </html><?php }
 /* {block 'body'}  file:layout.tpl */
-function block_619260594574a85987e70d3_27490002($_smarty_tpl, $_blockParentStack) {
+function block_980672758574af4e6dfc197_21841090($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'body'} */
 }

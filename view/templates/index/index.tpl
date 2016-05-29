@@ -66,7 +66,7 @@
     </div>
     <hr>
     <div class="row" id="register">
-        <h3 class="roboto-light">
+        <h3 class="roboto-light" id="register-title">
             Regístrate
         </h3>
         {include file="register_layout.tpl"}

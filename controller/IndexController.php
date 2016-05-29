@@ -4,7 +4,7 @@ require_once 'Controller.php';
 
 class IndexController extends Controller{
     public function __construct(){
-        
+
         parent::__construct('index');
 
         if(isset($_SESSION['user_logged_in']))
@@ -41,17 +41,7 @@ en _aprender a desarrollar_...';
         $this->assign('code_unparsed', $code);
         $this->display("index.tpl");
     }
-    
-    private function register(){
-        $account = Utils::register($_POST['email'], $_POST['password'], $_POST['password_ver']);
-        if($account instanceof Account){
-            $profile = Utils::create_profile($_POST['name'], $_POST['last_name'], $account);
-            if($profile instanceof UserProfile){
-                Utils::LoginSuccessful($account, $profile);
-                header('Location: /profile');
-            }
-        } else $this->index();
-    }
+
 
     private function POSTHandler(){
         if(!isset($_POST['choice'])) {
@@ -64,6 +54,39 @@ en _aprender a desarrollar_...';
                 $this->login();
                 break;
         }
+    }
+
+
+    private function register(){
+        $result = [];
+        parse_str($_POST['form'], $data);
+        $account = Utils::register($data['email'], $data['password'], $data['password_ver']);
+        if($account instanceof Account){
+            $profile = Utils::create_profile($data['name'], $data['last_name'], $account);
+            if($profile instanceof Profile){
+                Utils::LoginSuccessful($account, $profile);
+                $result['response'] = 'ok';
+                $result['action'] = '/profile/';
+            } else {
+                $result['response'] = 'error';
+                $result['message'] = 'Ocurrió un error al crear su perfil, contacte al administrador';
+            }
+        } else {
+            $result['response'] = 'error';
+            switch ($account){
+                case -1:
+                    $result['message'] = 'Dirección de correo inválida';
+                    break;
+                case -2:
+                    $result['message'] = 'Las contraseñas no coinciden';
+                    break;
+                case -3:
+                    $result['message'] = 'Cuenta de correo ya asociada';
+                    break;
+            }
+        }
+        echo json_encode($result);
+        exit;
     }
 
     private function login(){
