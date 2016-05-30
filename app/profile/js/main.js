@@ -3,9 +3,10 @@ var form = null;
 var contentDisplay = null;
 var new_note_modal = null;
 var fab = null;
+var editor = null;
 
 $(document).ready(function () {
-
+    
     form = $('#new-notbook-form');
     contentDisplay = $('#contentDisplay');
     new_note_modal = $('#modal1');
@@ -74,6 +75,8 @@ $(document).ready(function () {
             }
         });
     });
+
+    hashLocation((window.location.hash).replace('#','').split('#'));
 });
 
 function showNotbooks() {
@@ -124,4 +127,19 @@ function edit(id) {
             alert(data)
         }
     });
+}
+
+function hashLocation(url){
+    switch (url[0]){
+        case 'edit':
+            if((url.length - 1) > url.indexOf('edit')){
+                edit(url[1]);
+            }
+            break;
+        case 'notbooks':
+            showNotbooks();
+            break;
+        default:
+            break;
+    }
 }

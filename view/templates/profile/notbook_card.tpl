@@ -17,7 +17,7 @@
     </div>
     <div class="card-reveal">
         <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
-        <a class="waves-effect waves-green btn-flat teal-text" onclick="edit({$notbook->id})" href="#edit">Editar</a>
+        <a class="waves-effect waves-green btn-flat teal-text" onclick="edit({$notbook->id})" href="#edit#{$notbook->id}">Editar</a>
         <a class="waves-effect waves-red btn-flat teal-text" href="#delete">Eliminar</a>
     </div>
 </div>

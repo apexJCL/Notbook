@@ -78,8 +78,6 @@ class UserProfile extends Controller{
 
     private function create_notbook(){
         $result = [];
-        parse_str($_POST['settings'], $notbookSettings);
-        echo 'Created';
         exit;
     }
 
