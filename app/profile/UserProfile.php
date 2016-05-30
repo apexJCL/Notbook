@@ -100,7 +100,7 @@ class UserProfile extends Controller{
     private function edit(){
         $result =  [];
         $notbook = Notbook::find(['conditions' => [
-            'profile_id' => 1,
+            'profile_id' => $_SESSION['pid'],
             'id' => $_POST['nid']
         ]]);
         if(empty($notbook)){
