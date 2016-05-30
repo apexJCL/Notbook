@@ -1,7 +1,6 @@
 <?php
 
 require_once PATH.'controller/Controller.php';
-require_once PATH.'/ws/parser/Parser.php';
 
 class UserProfile extends Controller{
     public function __construct(){
@@ -44,8 +43,10 @@ class UserProfile extends Controller{
             case 'save_notbook':
                 $result = $this->save_notbook();
                 break;
+            case 'delete_notbook':
+                $result = $this->delete_notbook();
+                break;
             case 'parse':
-                die('lel');
                 $result = $this->parse_save();
                 break;
             case 'logout':
@@ -57,9 +58,12 @@ class UserProfile extends Controller{
 
     private function notbooks(){
         $result = [];
-        $notbooks = Notbook::find('all', ['conditions' => [
+        $notbooks = Notbook::find('all', [
+            'conditions' => [
             'profile_id' => $_SESSION['pid']
-        ]]);
+        ],
+            'readonly' => true
+        ]);
         $this->assign('data', $notbooks);
         $result['response'] = 'ok';
         $result['data'] = $this->fetch('notbooks_showcase.tpl');
@@ -99,10 +103,7 @@ class UserProfile extends Controller{
 
     private function edit(){
         $result =  [];
-        $notbook = Notbook::find(['conditions' => [
-            'profile_id' => $_SESSION['pid'],
-            'id' => $_POST['nid']
-        ]]);
+        $notbook = $this->getNotbook($_POST['nid']);
         if(empty($notbook)){
             $result['response'] = 'error';
             $result['message'] = 'Notbook no encontrada pid '.Notbook::connection()->last_query;
@@ -116,15 +117,10 @@ class UserProfile extends Controller{
 
     private function parse_save(){
         $result = [];
-        $notbook = Notbook::find([
-            'conditions' =>  [
-                'id' => $_POST['nid'],
-                'profile_id' => $_SESSION['pid']
-            ]
-        ]);
+        $notbook = $this->getNotbook($_POST['nid']);
         if(!empty($notbook)){
             $notbook->unparsed = $_POST['data'];
-            $notbook->parsed = Parser::parseData($_POST['data']);
+            $notbook->parsed = Utils::parseData($_POST['data']);
             $notbook->save();
             $result['response'] ='ok';
             $result['data'] = $notbook->parsed;
@@ -137,21 +133,36 @@ class UserProfile extends Controller{
 
     private function save_notbook(){
         $result = [];
-        $notbook = Notbook::find([
-            'conditions' => [
-                'id' => $_POST['nid'],
-                'profile_id' => $_SESSION['pid']
-            ]
-        ]);
+        $notbook = $this->getNotbook($_POST['nid']);
         if(empty($notbook)) {
             $result['response'] = 'error';
             $result['message'] = 'datos: nota'.$_POST['nid'].', sesion:'.$_SESSION['pid'];
         } else {
             $notbook->unparsed = $_POST['data'];
-            $notbook->parsed = Parser::parseData($_POST['data']);
+            $notbook->parsed = Utils::parseData($_POST['data']);
             $notbook->save();
             $result['response'] = 'ok';
         }
+        return $result;
+    }
+
+    private function getNotbook($nid){
+        return Notbook::find([
+            'conditions' => [
+                'id' => $nid,
+                'profile_id' => $_SESSION['pid']
+            ]
+        ]);
+    }
+
+    private function delete_notbook(){
+        $notbook = $this->getNotbook($_POST['nid']);
+        if($notbook instanceof Notbook)
+            $notbook->delete();
+        $result = [
+            'response' => 'ok',
+            'message' => 'Éxito'
+        ];
         return $result;
     }
 }

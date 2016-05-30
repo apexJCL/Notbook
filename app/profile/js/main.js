@@ -11,7 +11,7 @@ $(document).ready(function () {
     
     form = $('#new-notbook-form');
     contentDisplay = $('#contentDisplay');
-    new_note_modal = $('#modal1');
+    new_note_modal = $('#new_notbook_modal');
     fab = $('.fixed-action-btn');
 
     listener = new window.keypress.Listener();
@@ -22,8 +22,14 @@ $(document).ready(function () {
         return false;
     });
 
+    listener.simple_combo("alt c", function () {
+        if($('#editor').length)
+            closeNotbook();
+        return false;
+    });
+
     listener.simple_combo("alt n", function () {
-        $('#modal1').openModal();
+        new_note_modal.openModal();
         return false;
     });
 
@@ -125,10 +131,26 @@ function content_switch(data) {
 }
 
 function deleteNotbook(nid) {
-    alert('Borrar '+nid);
+    $.ajax({
+        url: app_url,
+        type: 'POST',
+        data: {
+            'request': 'delete_notbook',
+            'nid': nid
+        },
+        success: function (data) {
+            var d = $.parseJSON(data);
+            Materialize.toast(d.message, 1000);
+        },
+        error: function () {
+            Materialize.toast('Ha ocurrido un error', 1000);
+        }
+    });
+    showNotbooks();
 }
 
 function edit(id) {
+    actualNote = id;
     $.ajax({
         url: app_url,
         type: 'POST',
@@ -137,7 +159,6 @@ function edit(id) {
             'nid': id
         },
         success: function (data) {
-            console.debug(data);
             var d = $.parseJSON(data);
             if(d.response === 'ok')
                 content_switch(d.data);

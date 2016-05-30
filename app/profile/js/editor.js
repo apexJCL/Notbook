@@ -1,5 +1,6 @@
 var editorInput;
 var editorOutput;
+var changes = null;
 
 $(document).ready(function () {
 
@@ -19,7 +20,6 @@ $(document).ready(function () {
                     'nid': actualNote
                 },
                 success: function (data) {
-                    console.debug(data);
                     var d = $.parseJSON(data);
                     if (d.response === 'ok')
                         updateOutput(d.data);

@@ -20,7 +20,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="btn-floating green modal-trigger" href="#modal1">
+                    <a class="btn-floating green modal-trigger" href="#new_notbook_modal">
                         <i class="material-icons">mode_edit</i>
                     </a>
                 </li>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <!-- Modal -->
-    <div id="modal1" class="modal bottom-sheet">
+    <div id="new_notbook_modal" class="modal bottom-sheet">
         <form action="" id="new-notbook-form" method="post">
             <div class="modal-content">
                 <h4>Nuevo Notbook</h4>

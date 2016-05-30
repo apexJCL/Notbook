@@ -1,7 +1,7 @@
 <?php
 
 class Utils {
-
+    
     public static function register($email, $password, $password_ver){
         if (!self::isValidEmail($email))
             return -1; // Invalid Email
@@ -69,5 +69,10 @@ class Utils {
         $account->last_session =
         */
         session_destroy();
+    }
+
+    public static function parseData($text){
+        $parser = new Parsedown();
+        return $parser->parse($text);
     }
 }
