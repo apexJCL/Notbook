@@ -46,4 +46,10 @@ class Controller {
     public function fetch($template){
         return $this->smarty->fetch($this->template_dir.$template);
     }
+
+    public function response($result){
+        header('Content type: application/json');
+        echo json_encode($result);
+        exit;
+    }
 }

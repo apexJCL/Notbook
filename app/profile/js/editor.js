@@ -9,21 +9,27 @@ $(document).ready(function () {
     editor = $('#editor');
     
     listener.simple_combo("alt p", function () {
-        $.ajax({
-            url: '/ws/parser/Parser.php',
-            type: 'POST',
-            data: {
-                'request': 'parse',
-                'data': editorInput.val()
-            },
-            success: function (data) {
-                var d = $.parseJSON(data);
-                updateOutput(d.data);
-            },
-            error: function () {
-                alert('Error');
-            }
-        });
+        if($('#editor').length) {
+            $.ajax({
+                url: app_url,
+                type: 'POST',
+                data: {
+                    'request': 'parse',
+                    'data': editorInput.val(),
+                    'nid': actualNote
+                },
+                success: function (data) {
+                    console.debug(data);
+                    var d = $.parseJSON(data);
+                    if (d.response === 'ok')
+                        updateOutput(d.data);
+                    else alert(d.message);
+                },
+                error: function () {
+                    Materialize.toast('Ha ocurrido un error', 2000);
+                }
+            });
+        }
     });
 
     editorInput.keydown(function(e) {
@@ -54,5 +60,26 @@ function updateOutput(data) {
     editorOutput.slideUp('fast', function () {
         editorOutput.html(data);
         editorOutput.slideDown('fast');
+    });
+}
+
+function saveNotbook() {
+    $.ajax({
+        url: app_url,
+        type:'POST',
+        data: {
+            'request': 'save_notbook',
+            'nid': actualNote,
+            'data': editorInput.val()
+        },
+        success: function (data) {
+            console.debug(data);
+            var d = $.parseJSON(data);
+            if(d.response === 'ok'){
+                Materialize.toast('¬book guardado exitosamente', 2000);
+            } else {
+                alert(d.message);
+            }
+        }
     });
 }

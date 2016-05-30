@@ -1,6 +1,7 @@
 <?php
 
 require_once PATH.'controller/Controller.php';
+require_once PATH.'/ws/parser/Parser.php';
 
 class UserProfile extends Controller{
     public function __construct(){
@@ -26,23 +27,32 @@ class UserProfile extends Controller{
     }
 
     private function POSTHandler(){
+        $result = null;
         switch ($_POST['request']){
             case 'notbooks':
-                $this->notbooks();
+                $result = $this->notbooks();
                 break;
             case 'edit':
-                $this->edit();
+                $result = $this->edit();
                 break;
             case 'settings':
-                $this->settings();
+                $result = $this->settings();
                 break;
             case 'new-notbook':
-                $this->create_notbook();
+                $result = $this->create_notbook();
+                break;
+            case 'save_notbook':
+                $result = $this->save_notbook();
+                break;
+            case 'parse':
+                die('lel');
+                $result = $this->parse_save();
                 break;
             case 'logout':
-                $this->logout();
+                $result = $this->logout();
                 breaK;
         }
+        $this->response($result);
     }
 
     private function notbooks(){
@@ -53,8 +63,7 @@ class UserProfile extends Controller{
         $this->assign('data', $notbooks);
         $result['response'] = 'ok';
         $result['data'] = $this->fetch('notbooks_showcase.tpl');
-        echo json_encode($result);
-        exit;
+        return $result;
     }
 
     private function logout(){
@@ -72,8 +81,7 @@ class UserProfile extends Controller{
             'response' => 'ok',
             'data' => $this->fetch('settings.tpl')
         ];
-        echo json_encode($result);
-        exit;
+        return $result;
     }
 
     private function create_notbook(){
@@ -86,8 +94,7 @@ class UserProfile extends Controller{
         $notbook->save();
         $result['response'] = 'ok';
         $result['nid'] = $notbook->id;
-        echo json_encode($result);
-        exit;
+        return $result;
     }
 
     private function edit(){
@@ -104,8 +111,48 @@ class UserProfile extends Controller{
             $result['data'] = $this->fetch('editor.tpl');
             $result['response'] = 'ok';
         }
-        echo json_encode($result);
-        exit;
+        return $result;
+    }
+
+    private function parse_save(){
+        $result = [];
+        $notbook = Notbook::find([
+            'conditions' =>  [
+                'id' => $_POST['nid'],
+                'profile_id' => $_SESSION['pid']
+            ]
+        ]);
+        if(!empty($notbook)){
+            $notbook->unparsed = $_POST['data'];
+            $notbook->parsed = Parser::parseData($_POST['data']);
+            $notbook->save();
+            $result['response'] ='ok';
+            $result['data'] = $notbook->parsed;
+        } else {
+            $result['response'] = 'error';
+            $result['message'] = 'No se ha encontrado el ¬book indicado';
+        }
+        return $result;
+    }
+
+    private function save_notbook(){
+        $result = [];
+        $notbook = Notbook::find([
+            'conditions' => [
+                'id' => $_POST['nid'],
+                'profile_id' => $_SESSION['pid']
+            ]
+        ]);
+        if(empty($notbook)) {
+            $result['response'] = 'error';
+            $result['message'] = 'notbook vacio';
+        } else {
+            $notbook->unparsed = $_POST['data'];
+            $notbook->parsed = Parser::parseData($_POST['data']);
+            $notbook->save();
+            $result['response'] = 'ok';
+        }
+        return $result;
     }
 }
 

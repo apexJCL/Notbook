@@ -14,20 +14,25 @@ class Parser {
     private function WS(){
         switch ($_POST['request']){
             case 'parse':
-                $this->parse();
+                self::parse();
                 break;
             default:
                 break;
         }
     }
 
-    private function parse(){
+    private static function parse(){
         $result = [];
         $parser = new Parsedown();
         $result['response'] = 'ok';
         $result['data'] = $parser->parse($_POST['data']);
         echo json_encode($result);
         exit;
+    }
+
+    public static function parseData($text){
+        $parser = new Parsedown();
+        return $parser->parse($text);
     }
 }
 

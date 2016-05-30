@@ -5,6 +5,7 @@ var new_note_modal = null;
 var fab = null;
 var editor = null;
 var listener;
+var actualNote = null;
 
 $(document).ready(function () {
     
@@ -14,10 +15,13 @@ $(document).ready(function () {
     fab = $('.fixed-action-btn');
 
     listener = new window.keypress.Listener();
-    listener.simple_combo("ctrl s", function () {
-        alert('Saving');
+
+    listener.simple_combo("alt s", function () {
+        if($('#editor').length)
+            saveNotbook();
         return false;
     });
+
     listener.simple_combo("alt n", function () {
         $('#modal1').openModal();
         return false;
@@ -66,7 +70,7 @@ $(document).ready(function () {
                 }
             },
             error: function () {
-                alert('Error :(');
+                Materialize.toast('Cerrando sesión', 1000);
             }
         });
     });
@@ -107,7 +111,7 @@ function showNotbooks() {
             }
         },
         error: function () {
-            alert('Error :(');
+            Materialize.toast('Sucedió un error mostrando sus ¬books', 5000);
         }
     });
 }
@@ -116,7 +120,6 @@ function content_switch(data) {
     contentDisplay.slideUp('fast', function () {
         contentDisplay.html(data);
         contentDisplay.slideDown('fast');
-        contentDisplay.offset().top;
     });
     fab.closeFAB();
 }
@@ -139,7 +142,7 @@ function edit(id) {
             if(d.response === 'ok')
                 content_switch(d.data);
             else
-                alert(d.message);
+                Materialize.toast(d.message, 2000);
         },
         error: function (data) {
             alert(data)
@@ -152,6 +155,7 @@ function hashLocation(url){
         case 'edit':
             if((url.length - 1) > url.indexOf('edit')){
                 edit(url[1]);
+                actualNote = url[1];
             }
             break;
         case 'notbooks':
