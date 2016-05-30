@@ -1,6 +1,26 @@
 <?php
 
 class Utils {
+
+    static $default_note = "## ¬book  
+#### Para apuntes rápidos
+---
+Con **¬book** puedes comenzar a escribir y sólo enfocarte en eso, escribir.
+
+Para comenzar, crea una cuenta en [notbook](http://notbook-oswebapp.rhcloud.com), después, en tu cuenta, usa el menú flotante en la **esquina inferior derecha** para comenzar a crear notas o ver una lista de las que tengas.
+
+##### Comandos rápidos  
+```
+Alt + N : Nuevo ¬book
+```
+
+##### Comandos  del editor
+```
+Alt + P : Parsear nota (guarda también)
+Alt + S : Guardar (sólo guarda)
+```
+
+Conforme se avance, se irán agregando características, como compartir ¬book's, u otros";
     
     public static function register($email, $password, $password_ver){
         if (!self::isValidEmail($email))
@@ -35,6 +55,13 @@ class Utils {
         try{
             $profile = new Profile(['id' => $account->id, 'name' => $name, 'last_name' => $last_name]);
             $profile->save();
+            // Default note
+            $notbook = new Notbook();
+            $notbook->profile_id = $profile->id;
+            $notbook->title = 'Bienvenido';
+            $notbook->unparsed = self::$default_note;
+            $notbook->parsed = self::parseData(self::$default_note);
+            $notbook->save();
             return $profile;
         } catch (Exception $e){
             return false;
