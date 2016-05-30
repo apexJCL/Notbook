@@ -1,8 +1,10 @@
 {extends file="{$baseurl}layout.tpl"}
 {block name="body"}
+    <link rel="stylesheet" href="/css/github.css">
+    <script src="/js/highlight.pack.js"></script>
     <script src="/app/profile/js/main.js"></script>
     <script src="/js/keypress-2.1.4.min.js"></script>
-    <div style="min-height: 350px;">
+    <div>
         <div id="contentDisplay">
             <h3 align="center" class="roboto-light">Bienvenido, {$smarty.session.name}</h3>
             <div class="center-align">

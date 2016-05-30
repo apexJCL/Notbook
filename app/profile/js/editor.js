@@ -59,6 +59,9 @@ $(document).ready(function () {
 function updateOutput(data) {
     editorOutput.slideUp('fast', function () {
         editorOutput.html(data);
+        $('pre code').each(function(i, block) {
+            hljs.highlightBlock(block);
+        });
         editorOutput.slideDown('fast');
     });
 }

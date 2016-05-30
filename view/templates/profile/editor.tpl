@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/github.css">
-<script src="/js/highlight.pack.js"></script>
 <div class="section fullscreen" id="editor">
     <div class="row">
         <div class="col s12 m6">
