@@ -145,7 +145,7 @@ class UserProfile extends Controller{
         ]);
         if(empty($notbook)) {
             $result['response'] = 'error';
-            $result['message'] = 'notbook vacio';
+            $result['message'] = var_dump($notbook);
         } else {
             $notbook->unparsed = $_POST['data'];
             $notbook->parsed = Parser::parseData($_POST['data']);
