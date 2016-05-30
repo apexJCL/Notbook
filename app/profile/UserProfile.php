@@ -145,7 +145,7 @@ class UserProfile extends Controller{
         ]);
         if(empty($notbook)) {
             $result['response'] = 'error';
-            $result['message'] = var_dump($notbook);
+            $result['message'] = 'datos: nota'.$_POST['nid'].', sesion:'.$_SESSION['pid'];
         } else {
             $notbook->unparsed = $_POST['data'];
             $notbook->parsed = Parser::parseData($_POST['data']);
