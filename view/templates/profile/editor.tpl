@@ -22,5 +22,4 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="/js/keypress-2.1.4.min.js"></script>
 <script src="/app/profile/js/editor.js"></script>

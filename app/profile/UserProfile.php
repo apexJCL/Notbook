@@ -78,6 +78,15 @@ class UserProfile extends Controller{
 
     private function create_notbook(){
         $result = [];
+        parse_str($_POST['settings'], $notbookSettings);
+        $notbook = new Notbook();
+        $notbook->profile_id = $_SESSION['pid'];
+        $notbook->title = $notbookSettings['title'];
+        $notbook->private = isset($notbookSettings['private']);
+        $notbook->save();
+        $result['response'] = 'ok';
+        $result['nid'] = $notbook->id;
+        echo json_encode($result);
         exit;
     }
 

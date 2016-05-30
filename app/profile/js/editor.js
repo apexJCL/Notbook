@@ -7,7 +7,7 @@ $(document).ready(function () {
     editorOutput = $('#editorOutput');
 
     editor = $('#editor');
-    var listener = new window.keypress.Listener();
+    
     listener.simple_combo("alt p", function () {
         $.ajax({
             url: '/ws/parser/Parser.php',

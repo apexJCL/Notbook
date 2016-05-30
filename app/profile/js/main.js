@@ -4,6 +4,7 @@ var contentDisplay = null;
 var new_note_modal = null;
 var fab = null;
 var editor = null;
+var listener;
 
 $(document).ready(function () {
     
@@ -11,6 +12,16 @@ $(document).ready(function () {
     contentDisplay = $('#contentDisplay');
     new_note_modal = $('#modal1');
     fab = $('.fixed-action-btn');
+
+    listener = new window.keypress.Listener();
+    listener.simple_combo("ctrl s", function () {
+        alert('Saving');
+        return false;
+    });
+    listener.simple_combo("alt n", function () {
+        $('#modal1').openModal();
+        return false;
+    });
 
     $('.modal-trigger').leanModal();
 
@@ -24,7 +35,10 @@ $(document).ready(function () {
                 'settings': form.serialize()
             },
             success: function (data) {
-                console.debug(data);
+                var d = $.parseJSON(data);
+                if(d.response === 'ok'){
+                    edit(d.nid);
+                }
             },
             error: function (data) {
                 alert('Ocurrió un error :(');
@@ -105,6 +119,10 @@ function content_switch(data) {
         contentDisplay.offset().top;
     });
     fab.closeFAB();
+}
+
+function deleteNotbook(nid) {
+    alert('Borrar '+nid);
 }
 
 function edit(id) {
