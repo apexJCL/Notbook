@@ -58,7 +58,7 @@ class UserProfile extends Controller{
     private function notbooks(){
         $result = [];
         $notbooks = Notbook::find('all', ['conditions' => [
-            'profile_id' => 1
+            'profile_id' => $_SESSION['pid']
         ]]);
         $this->assign('data', $notbooks);
         $result['response'] = 'ok';
