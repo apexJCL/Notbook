@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-29 23:25:51
+/* Smarty version 3.1.29, created on 2016-05-31 10:42:00
   from "/var/www/html/Notbook/view/templates/layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_574bc0cf3310a5_93098600',
+  'unifunc' => 'content_574db0c8dfd5b3_81140265',
   'file_dependency' => 
   array (
     '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:menu.tpl' => 2,
   ),
 ),false)) {
-function content_574bc0cf3310a5_93098600 ($_smarty_tpl) {
+function content_574db0c8dfd5b3_81140265 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!doctype html>
@@ -82,7 +82,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
         <div class="container main-container">
             <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_1221294283574bc0cf32f5f4_62865082',
+  0 => 'block_2018896382574db0c8dfb434_00178861',
   1 => false,
   3 => 0,
   2 => 0,
@@ -124,7 +124,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 </body>
 </html><?php }
 /* {block 'body'}  file:layout.tpl */
-function block_1221294283574bc0cf32f5f4_62865082($_smarty_tpl, $_blockParentStack) {
+function block_2018896382574db0c8dfb434_00178861($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'body'} */
 }

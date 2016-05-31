@@ -31,6 +31,7 @@ class Controller {
                 'development' => sprintf('%s://%s:%s@%s/%s', DB_DBMS, DB_USER, DB_PASSWORD, DB_HOST, DB_DATABASE)
             ]);
         });
+        ActiveRecord\Connection::$datetime_format = 'Y-m-d H:i:s';
         $this->template_dir = strtolower($classname).'/';
         $this->assign('baseurl', $this->template_dir);
     }

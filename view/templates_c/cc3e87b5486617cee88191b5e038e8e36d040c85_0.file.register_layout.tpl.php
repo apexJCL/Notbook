@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-29 08:14:56
+/* Smarty version 3.1.29, created on 2016-05-31 10:42:42
   from "/var/www/html/Notbook/view/templates/register_layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_574aeb50a9f0b9_26209593',
+  'unifunc' => 'content_574db0f2105760_24553677',
   'file_dependency' => 
   array (
     'cc3e87b5486617cee88191b5e038e8e36d040c85' => 
     array (
       0 => '/var/www/html/Notbook/view/templates/register_layout.tpl',
-      1 => 1464527640,
+      1 => 1464540822,
       2 => 'file',
     ),
   ),
@@ -19,10 +19,10 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_574aeb50a9f0b9_26209593 ($_smarty_tpl) {
+function content_574db0f2105760_24553677 ($_smarty_tpl) {
 ?>
 <div class="row">
-    <form class="col s12" method="post" id="register_form">
+    <form  class="col s12" method="post" id="register_form">
         <div class="row">
             <div class="input-field col s6">
                 <i class="material-icons prefix teal-text">perm_identity</i>

@@ -20,6 +20,10 @@ Alt + P : Parsear nota (guarda también)
 Alt + S : Guardar (sólo guarda)
 ```
 
+### Para móviles
+Al momento en que cambies a la pestaña **Vista**, automáticamente tu ¬book se guardará, así que, no te preocupes, sólo edita, ve tus cambios y listo!
+Después se agregará un botón explícito de guardado.
+
 Conforme se avance, se irán agregando características, como compartir ¬book's, u otros";
     
     public static function register($email, $password, $password_ver){
