@@ -99,7 +99,6 @@ $(document).ready(function () {
             }
         });
     });
-
     hashLocation((window.location.hash).replace('#','').split('#'));
 });
 
@@ -179,10 +178,9 @@ function hashLocation(url){
                 actualNote = url[1];
             }
             break;
+        default:
         case 'notbooks':
             showNotbooks();
-            break;
-        default:
             break;
     }
 }

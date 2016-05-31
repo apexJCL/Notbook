@@ -1,34 +1,32 @@
 var editorInput;
 var editorOutput;
+var viewTab;
 var changes = null;
 
 $(document).ready(function () {
 
     editorInput = $('#unparsed');
     editorOutput = $('#editorOutput');
-
+    viewTab = $('#tabviewer');
     editor = $('#editor');
     
     listener.simple_combo("alt p", function () {
         if($('#editor').length) {
-            $.ajax({
-                url: app_url,
-                type: 'POST',
-                data: {
-                    'request': 'parse',
-                    'data': editorInput.val(),
-                    'nid': actualNote
-                },
-                success: function (data) {
-                    var d = $.parseJSON(data);
-                    if (d.response === 'ok')
-                        updateOutput(d.data);
-                    else alert(d.message);
-                },
-                error: function () {
-                    Materialize.toast('Ha ocurrido un error', 2000);
-                }
-            });
+            updateData();
+        }
+    });
+
+    listener.simple_combo("alt v", function () {
+        if($('#editor').length){
+            $('ul.tabs').tabs('select_tab', 'notviewer');
+        }
+    });
+
+    listener.simple_combo("alt e", function () {
+        if($('#editor').length){
+            $('ul.tabs').tabs('select_tab', 'noteditor');
+            editorInput.focus();
+            return false;
         }
     });
 
@@ -52,6 +50,14 @@ $(document).ready(function () {
             // prevent the focus lose
             e.preventDefault();
         }
+    });
+
+    viewTab.on('click', function () {
+        updateData();
+    });
+
+    $(document).ready(function(){
+        $('ul.tabs').tabs();
     });
 
 });
@@ -83,6 +89,27 @@ function saveNotbook() {
             } else {
                 alert(d.message);
             }
+        }
+    });
+}
+
+function updateData() {
+    $.ajax({
+        url: app_url,
+        type: 'POST',
+        data: {
+            'request': 'parse',
+            'data': editorInput.val(),
+            'nid': actualNote
+        },
+        success: function (data) {
+            var d = $.parseJSON(data);
+            if (d.response === 'ok')
+                updateOutput(d.data);
+            else alert(d.message);
+        },
+        error: function () {
+            Materialize.toast('Ha ocurrido un error', 2000);
         }
     });
 }
