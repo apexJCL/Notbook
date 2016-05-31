@@ -170,7 +170,7 @@ class UserProfile extends Controller{
             $notbooks = Notbook::find_by_sql(sprintf("SELECT * FROM notbooks WHERE profile_id = %d AND unparsed LIKE '%%%s%%'", $_SESSION['pid'], $search['search_query']));
             if (empty($notbooks)) {
                 $result['response'] = 'error';
-                $result['message'] = 'error';
+                $result['message'] = 'No hay coincidencias';
             } else {
                 $result['response'] = 'ok';
                 $this->assign('data', $notbooks);
