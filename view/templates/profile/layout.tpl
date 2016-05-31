@@ -37,7 +37,7 @@
 </header>
 
 <main>
-    <div class="section no-pad-bot" id="index-banner">
+    <div class="section no-pad" id="index-banner">
         <div class="container main-container">
             {block name="body"}{/block}
         </div>

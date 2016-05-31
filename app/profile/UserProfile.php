@@ -28,29 +28,23 @@ class UserProfile extends Controller{
     private function POSTHandler(){
         $result = null;
         switch ($_POST['request']){
-            case 'notbooks':
-                $result = $this->notbooks();
+            case 'notbooks': $result = $this->notbooks();
                 break;
-            case 'edit':
-                $result = $this->edit();
+            case 'edit': $result = $this->edit();
                 break;
-            case 'settings':
-                $result = $this->settings();
+            case 'settings': $result = $this->settings();
                 break;
-            case 'new-notbook':
-                $result = $this->create_notbook();
+            case 'new-notbook': $result = $this->create_notbook();
                 break;
-            case 'save_notbook':
-                $result = $this->save_notbook();
+            case 'save_notbook': $result = $this->save_notbook();
                 break;
-            case 'delete_notbook':
-                $result = $this->delete_notbook();
+            case 'delete_notbook': $result = $this->delete_notbook();
                 break;
-            case 'parse':
-                $result = $this->parse_save();
+            case 'parse': $result = $this->parse_save();
                 break;
-            case 'logout':
-                $result = $this->logout();
+            case 'search': $result = $this->search();
+                break;
+            case 'logout': $result = $this->logout();
                 breaK;
         }
         $this->response($result);
@@ -65,6 +59,7 @@ class UserProfile extends Controller{
             'readonly' => true
         ]);
         $this->assign('data', $notbooks);
+        $this->assign('title', 'Tus ¬books');
         $result['response'] = 'ok';
         $result['data'] = $this->fetch('notbooks_showcase.tpl');
         return $result;
@@ -120,6 +115,7 @@ class UserProfile extends Controller{
         $notbook = $this->getNotbook($_POST['nid']);
         if(!empty($notbook)){
             $notbook->unparsed = $_POST['data'];
+            $notbook->title = $_POST['title'];
             $notbook->parsed = Utils::parseData($_POST['data']);
             $notbook->save();
             $result['response'] ='ok';
@@ -139,6 +135,7 @@ class UserProfile extends Controller{
             $result['message'] = 'datos: nota'.$_POST['nid'].', sesion:'.$_SESSION['pid'];
         } else {
             $notbook->unparsed = $_POST['data'];
+            $notbook->title = $_POST['title'];
             $notbook->parsed = Utils::parseData($_POST['data']);
             $notbook->save();
             $result['response'] = 'ok';
@@ -163,6 +160,26 @@ class UserProfile extends Controller{
             'response' => 'ok',
             'message' => 'Éxito'
         ];
+        return $result;
+    }
+
+    private function search(){
+        $result = [];
+        parse_str($_POST['query'], $search);
+        try {
+            $notbooks = Notbook::find_by_sql(sprintf("SELECT * FROM notbooks WHERE profile_id = %d AND unparsed LIKE '%%%s%%'", $_SESSION['pid'], $search['search_query']));
+            if (empty($notbooks)) {
+                $result['response'] = 'error';
+                $result['message'] = 'error';
+            } else {
+                $result['response'] = 'ok';
+                $this->assign('data', $notbooks);
+                $this->assign('title', 'Resultado de búsqueda');
+                $result['data'] = $this->fetch('notbooks_showcase.tpl');
+            }
+        } catch (Exception $e){
+            echo Notbook::connection()->last_query;
+        }
         return $result;
     }
 }

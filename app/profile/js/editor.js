@@ -1,3 +1,4 @@
+var noteTitle;
 var editorInput;
 var editorOutput;
 var viewTab;
@@ -7,6 +8,7 @@ $(document).ready(function () {
 
     editorInput = $('#unparsed');
     editorOutput = $('#editorOutput');
+    noteTitle = $('#title');
     viewTab = $('#tabviewer');
     editor = $('#editor');
     
@@ -63,12 +65,9 @@ $(document).ready(function () {
 });
 
 function updateOutput(data) {
-    editorOutput.slideUp('fast', function () {
-        editorOutput.html(data);
-        $('pre code').each(function(i, block) {
-            hljs.highlightBlock(block);
-        });
-        editorOutput.slideDown('fast');
+    editorOutput.html(data);
+    $('pre code').each(function(i, block) {
+        hljs.highlightBlock(block);
     });
 }
 
@@ -79,7 +78,8 @@ function saveNotbook() {
         data: {
             'request': 'save_notbook',
             'nid': actualNote,
-            'data': editorInput.val()
+            'data': editorInput.val(),
+            'title': noteTitle.val()
         },
         success: function (data) {
             console.debug(data);

@@ -26,10 +26,15 @@
                         <i class="material-icons">mode_edit</i>
                     </a>
                 </li>
+                <li>
+                    <a class="btn-floating blue modal-trigger" href="#search_modal">
+                        <i class="material-icons">search</i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
-    <!-- Modal -->
+    <!-- Modal - New Notbook -->
     <div id="new_notbook_modal" class="modal bottom-sheet">
         <form action="" id="new-notbook-form" method="post">
             <div class="modal-content">
@@ -56,6 +61,27 @@
             </div>
             <div class="modal-footer">
                 <button class="waves-effect btn-flat" type="submit" name="new-notbook">Crear</button>
+            </div>
+        </form>
+    </div>
+    <!-- Modal - Search Notbooks -->
+    <div id="search_modal" class="modal bottom-sheet">
+        <form action="" id="search-notbooks" method="post">
+            <div class="modal-content">
+                <h4>Buscar</h4>
+                <div>
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="row">
+                                <label for="search_query">Texto</label>
+                                <input type="text" id="search_query" name="search_query" placeholder="¿Qué será :v?" autofocus>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="waves-effect btn-flat" type="submit" name="new-notbook">¡Encuéntralo!</button>
             </div>
         </form>
     </div>

@@ -25,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div id="notviewer" class="col s12">
+        <div id="notviewer" class="col s12 ulist">
             <div id="editorOutput">
                 {$notbook->parsed}
             </div>
