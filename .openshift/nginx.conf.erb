@@ -34,6 +34,10 @@ server {
         index index.php  index.html index.htm;
     }
 
+    location ~* ^/view/nid=([0-9]*) {
+            try_files $uri $uri/ /app/viewer/Viewer.php?$1$is_args$args;
+        }
+
     location /profile {
         try_files $uri $uri/ /app/profile/UserProfile.php?$args;
     }
