@@ -4,7 +4,7 @@
             <div class="col s12">
                 <p>Deja un comentario</p>
             </div>
-            <form action="" id="comment_form">
+            <form action="" id="comment_form" method="post">
                 <div class="col s12 m6">
                     <label for="comment" id="letter_counter"></label>
                         <textarea name="comment" id="comment" cols="30" rows="10"
