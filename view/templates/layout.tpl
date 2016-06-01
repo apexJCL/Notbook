@@ -24,7 +24,7 @@
 <body>
 
 <header>
-    <div class="navbar-fixed">
+    <div class="">
         <nav class="teal">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center"><img src="/img/notbook.png" class="logo" alt=""></a>

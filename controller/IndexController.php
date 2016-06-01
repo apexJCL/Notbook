@@ -90,11 +90,14 @@ en _aprender a desarrollar_...';
     }
 
     private function login(){
-        $result = Utils::login($_POST['email'], $_POST['password']);
+        parse_str($_POST['form'], $form);
+        $result = Utils::login($form['email'], $form['password']);
+        header('Content type: application/json');
         if($result)
-            header('Location: /profile');
+            echo json_encode(['response' => 'ok', 'location' => '/profile']);
         else
-            header('Location: /');
+            echo json_encode(['response' => 'error', 'message' => 'No se pudo iniciar sesión, revise sus credenciales']);
+        exit;
     }
 }
 

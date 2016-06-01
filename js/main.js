@@ -1,55 +1,96 @@
+var registerForm;
+var loginForm;
+var indexURL = '/controller/IndexController.php';
+var firstName;
+var password;
+var password_ver;
+var password_ver_label;
+var password_label;
+
 $(document).ready(function () {
 
-    $("#register_form").validate({
-        rules: {
-            password: {
-                required: true,
-                minlength: 8
-            },
-            password_ver: {
-                equalTo: '#password'
-            },
-            email: {
-                required: true,
-                email: true
-            },
-            name: {
-                required: true
-            },
-            last_name:{
-                required: true
-            }
-        },
-        messages: {
-            password: {
-                minlength: "Longitud mínima: 8 caracteres"
-            },
-            password_ver: "Las contraseñas no coinciden",
-            email: "Ingrese un correo válido",
-            name: "Ingrese su nombre",
-            last_name: "Ingrese su apellido"
+    registerForm = $('#register_form');
+    loginForm = $('#login_form');
+    // Form
+    firstName = $('#first_name');
+    password = $('#password');
+    password_ver = $('#password_ver');
+    password_label = $('#password_label');
+    password_ver_label = $('#password_ver_label');
+
+
+    //Validaton
+    password.blur(function () {
+        if(password.val().length <8) {
+            password_label.text('Mínimo 8 caracteres');
+            password_label.addClass('red-text');
+        } else {
+            password_label.text('Contraseña');
+            password_label.removeClass('red-text');
         }
     });
 
-    $('#register_form').submit(function (e) {
+    password_ver.blur(function () {
+       if(password.val() != password_ver.val()){
+           password_ver_label.text('Las contraseñas no coinciden');
+           password_ver_label.addClass('red-text');
+       } else {
+           password_ver_label.text('Repita contraseña');
+           password_ver_label.removeClass('red-text');
+       }
+    });
+
+    registerForm.submit(function (e) {
+
+        // Form validation
+        if(password.val().length <8){
+            Materialize.toast('La contraseña debe tener mínimo 8 caracteres', 3000);
+            return false;
+        } else if(password.val() != password_ver.val()){
+            Materialize.toast('Las contraseñas no coinciden', 3000);
+            return false;
+        }
+
         e.preventDefault();
         $.ajax({
-            url: '/controller/IndexController.php',
+            url: indexURL,
             type: 'POST',
             data: {
                 'choice': 'register',
-                'form': $('#register_form').serialize()
+                'form': registerForm.serialize()
             },
             success: function (data) {
                 var d = $.parseJSON(data);
                 if(d.response === 'ok'){
                     document.location.href = d.action;
                 } else {
-                    $('#register-title').text(d.message);
+                    Materialize.toast(d.message, 2500);
                 }
             },
             error: function (data) {
                 console.debug(data);
+            }
+        });
+    });
+    
+    loginForm.submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: indexURL,
+            type: 'POST',
+            data: {
+                'choice': 'login',
+                'form': loginForm.serialize()
+            },
+            success: function (data) {
+                var d = $.parseJSON(data);
+                if(d.response === 'ok'){
+                    window.location = d.location;
+                } else Materialize.toast(d.message, 2000);
+                    
+            },
+            error: function () {
+                Materialize.toast('Ocurrió un error', 1000);
             }
         });
     });

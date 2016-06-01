@@ -1,6 +1,6 @@
 <div class="container" style="padding-top: 25px">
     <div class="card-panel">
-        <form action="/" method="post">
+        <form action="#" method="post" id="login_form">
             <div class="row">
                 <div class="input-field black-text col s12">
                     <i class="material-icons prefix">email</i>
@@ -18,12 +18,11 @@
                 </div>
             </div>
             <div class="accent-2">
-                <a href="">¿Olvidaste tu contraseña?</a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">¿Olvidaste tu contraseña?</a>
             </div>
             <div class="accent-2">
-                <a href="">Regístrate</a>
+                <a href="/#register">Regístrate</a>
             </div>
-            <input type="hidden" name="choice" value="login">
         </form>
     </div>
 </div>

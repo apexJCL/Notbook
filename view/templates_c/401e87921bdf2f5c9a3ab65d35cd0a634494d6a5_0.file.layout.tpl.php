@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-05-31 10:42:00
+/* Smarty version 3.1.29, created on 2016-06-01 08:09:38
   from "/var/www/html/Notbook/view/templates/layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_574db0c8dfd5b3_81140265',
+  'unifunc' => 'content_574ede92e39726_05698103',
   'file_dependency' => 
   array (
     '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
     array (
       0 => '/var/www/html/Notbook/view/templates/layout.tpl',
-      1 => 1464582345,
+      1 => 1464786578,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:menu.tpl' => 2,
   ),
 ),false)) {
-function content_574db0c8dfd5b3_81140265 ($_smarty_tpl) {
+function content_574ede92e39726_05698103 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!doctype html>
@@ -57,7 +57,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 <body>
 
 <header>
-    <div class="navbar-fixed">
+    <div class="">
         <nav class="teal">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center"><img src="/img/notbook.png" class="logo" alt=""></a>
@@ -82,7 +82,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
         <div class="container main-container">
             <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_2018896382574db0c8dfb434_00178861',
+  0 => 'block_64248416574ede92e375e8_54237840',
   1 => false,
   3 => 0,
   2 => 0,
@@ -124,7 +124,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 </body>
 </html><?php }
 /* {block 'body'}  file:layout.tpl */
-function block_2018896382574db0c8dfb434_00178861($_smarty_tpl, $_blockParentStack) {
+function block_64248416574ede92e375e8_54237840($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'body'} */
 }
