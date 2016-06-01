@@ -48,3 +48,7 @@ main {
     min-width: 100%;
     margin: auto 0px;
 }
+
+.center-text {
+    text-align: center;
+}

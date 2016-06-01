@@ -2,6 +2,7 @@ var noteTitle;
 var editorInput;
 var editorOutput;
 var viewTab;
+var private_checkbox;
 var changes = null;
 
 $(document).ready(function () {
@@ -11,6 +12,7 @@ $(document).ready(function () {
     noteTitle = $('#title');
     viewTab = $('#tabviewer');
     editor = $('#editor');
+    private_checkbox = $('#private_attribute');
     
     listener.simple_combo("alt p", function () {
         if($('#editor').length) {
@@ -30,6 +32,23 @@ $(document).ready(function () {
             editorInput.focus();
             return false;
         }
+    });
+    
+    private_checkbox.change(function () {
+        $.ajax({
+            url: app_url,
+            type: 'POST',
+            data:{
+                'request': 'update_private_status',
+                'status': private_checkbox[0].checked,
+                'nid': actualNote
+            },
+            success: function (data) {
+                console.debug(data);
+                var d = $.parseJSON(data);
+                Materialize.toast(d.message, 1000);
+            }
+        });
     });
 
     editorInput.keydown(function(e) {
@@ -82,7 +101,6 @@ function saveNotbook() {
             'title': noteTitle.val()
         },
         success: function (data) {
-            console.debug(data);
             var d = $.parseJSON(data);
             if(d.response === 'ok'){
                 Materialize.toast('¬book guardado exitosamente', 2000);
@@ -100,7 +118,8 @@ function updateData() {
         data: {
             'request': 'parse',
             'data': editorInput.val(),
-            'nid': actualNote
+            'nid': actualNote,
+            'title': noteTitle.val()
         },
         success: function (data) {
             var d = $.parseJSON(data);

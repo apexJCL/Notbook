@@ -6,4 +6,13 @@ class NotbookComment extends \ActiveRecord\Model{
         ['notbook'],
         ['notbookcomment']
     ];
+
+    public static function getComments($nid){
+        return NotbookComment::find('all',[
+            'conditions' => [
+                'notbook_id' => $nid
+            ],
+            'order' => 'comment_date DESC'
+        ]);
+    }
 }

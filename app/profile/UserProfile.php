@@ -36,11 +36,13 @@ class UserProfile extends Controller{
                 break;
             case 'new-notbook': $result = $this->create_notbook();
                 break;
-            case 'save_notbook': $result = $this->save_notbook();
+            case 'save_notbook': $result = $this->__save_notbook__(false);
+                break;
+            case 'parse': $result = $this->__save_notbook__(true);
                 break;
             case 'delete_notbook': $result = $this->delete_notbook();
                 break;
-            case 'parse': $result = $this->parse_save();
+            case 'update_private_status': $result = $this->update_private_status();
                 break;
             case 'search': $result = $this->search();
                 break;
@@ -110,24 +112,7 @@ class UserProfile extends Controller{
         return $result;
     }
 
-    private function parse_save(){
-        $result = [];
-        $notbook = $this->getNotbook($_POST['nid']);
-        if(!empty($notbook)){
-            $notbook->unparsed = $_POST['data'];
-            $notbook->title = $_POST['title'];
-            $notbook->parsed = Utils::parseData($_POST['data']);
-            $notbook->save();
-            $result['response'] ='ok';
-            $result['data'] = $notbook->parsed;
-        } else {
-            $result['response'] = 'error';
-            $result['message'] = 'No se ha encontrado el ¬book indicado';
-        }
-        return $result;
-    }
-
-    private function save_notbook(){
+    private function __save_notbook__($data){
         $result = [];
         $notbook = $this->getNotbook($_POST['nid']);
         if(empty($notbook)) {
@@ -137,13 +122,16 @@ class UserProfile extends Controller{
             $notbook->unparsed = $_POST['data'];
             $notbook->title = $_POST['title'];
             $notbook->parsed = Utils::parseData($_POST['data']);
+            $notbook->last_parsed_date = date('Y-m-d H:i:ss');
             $notbook->save();
             $result['response'] = 'ok';
+            if($data)
+                $result['data'] = $notbook->parsed;
         }
         return $result;
     }
 
-    private function getNotbook($nid){
+    private function getNotbook(int $nid){
         return Notbook::find([
             'conditions' => [
                 'id' => $nid,
@@ -179,6 +167,21 @@ class UserProfile extends Controller{
             }
         } catch (Exception $e){
             echo Notbook::connection()->last_query;
+        }
+        return $result;
+    }
+
+    private function update_private_status(){
+        $result = [];
+        $result['extra'] = $_POST['status'];
+        $notbook = $this->getNotbook($_POST['nid']);
+        if(empty($notbook))
+            $result['message'] = 'Ocurrió un error';
+        else {
+            $notbook->private = ($_POST['status'] === 'true');
+            $notbook->last_parsed_date = date('Y-m-d H:i:ss');
+            $notbook->save();
+            $result['message'] = 'Actualizado correctamente';
         }
         return $result;
     }
