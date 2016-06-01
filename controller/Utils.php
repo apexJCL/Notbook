@@ -18,6 +18,8 @@ Alt + N : Nuevo ¬book
 ```
 Alt + P : Parsear nota (guarda también)
 Alt + S : Guardar (sólo guarda)
+Alt + E : Cambia a la pestaña de edición
+Alt + V : Cambia a la pestaña de visualización
 ```
 
 ### Para móviles
@@ -73,6 +75,12 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
     }
 
     public static function LoginSuccessful($account, $profile){
+        // Designamos el rol
+        $profile_role = new ProfileRole();
+        $profile_role->profile_id = $profile->id;
+        $profile_role->role_id = Role::find_by_role('user')->id;
+        $profile_role->save();
+        // Regeneramos la sesión
         session_regenerate_id(true);
         $_SESSION['user_logged_in'] = true;
         $_SESSION['email'] = $account->email;

@@ -7,8 +7,14 @@ class IndexController extends Controller{
 
         parent::__construct('index');
 
-        if(isset($_SESSION['user_logged_in']))
-            header('Location: /profile');
+        if(isset($_SESSION['user_logged_in'])) {
+            if($_SESSION['user_logged_in']) {
+                if(ProfileRole::isAdmin($_SESSION['pid']))
+                    header('Location: /admin');
+                else
+                    header('Location: /profile');
+            }
+        }
 
         if(empty($_POST)) $this->index();
         else $this->POSTHandler();

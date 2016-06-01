@@ -17,7 +17,6 @@ $(document).ready(function () {
     new_note_modal = $('#new_notbook_modal');
     search_modal = $('#search_modal');
     fab = $('.fixed-action-btn');
-
     listener = new window.keypress.Listener();
 
     listener.simple_combo("alt s", function () {
@@ -112,6 +111,7 @@ $(document).ready(function () {
     });
 
     $('#settings').click(showSettings());
+
     hashLocation((window.location.hash).replace('#','').split('#'));
 });
 
@@ -192,8 +192,10 @@ function hashLocation(url){
             }
             break;
         case 'settings':
+            showSettings();
             break;
         default:
+            showNotbooks();
         case 'notbooks':
             showNotbooks();
             break;

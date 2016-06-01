@@ -3,6 +3,6 @@
 class Profile extends \ActiveRecord\Model{
     static $has_many = [
         ['notbooks'],
-        ['roles', 'through' => 'role_permissions']
+        ['roles', 'through' => 'profile_roles']
     ];
 }

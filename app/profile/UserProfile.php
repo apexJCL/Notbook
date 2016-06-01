@@ -44,10 +44,14 @@ class UserProfile extends Controller{
                 break;
             case 'update_private_status': $result = $this->update_private_status();
                 break;
+            case 'update_profile': $result = $this->update_profile();
+                break;
             case 'search': $result = $this->search();
                 break;
             case 'logout': $result = $this->logout();
                 breaK;
+            case 'delete_account': $result = $this->delete_account();
+                break;
         }
         $this->response($result);
     }
@@ -78,10 +82,16 @@ class UserProfile extends Controller{
     }
 
     private function settings(){
-        $result = [
-            'response' => 'ok',
-            'data' => $this->fetch('settings.tpl')
-        ];
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']) {
+            $this->assign('profile', Profile::find_by_id($_SESSION['pid']));
+            $result = [
+                'response' => 'ok',
+                'data' => $this->fetch('settings.tpl')
+            ];
+        } else {
+            $result['response'] = 'error';
+            $result['message'] = 'Sucedió un error, inténtelo más tarde';
+        }
         return $result;
     }
 
@@ -142,8 +152,9 @@ class UserProfile extends Controller{
 
     private function delete_notbook(){
         $notbook = $this->getNotbook($_POST['nid']);
-        if($notbook instanceof Notbook)
+        if($notbook instanceof Notbook) {
             $notbook->delete();
+        }
         $result = [
             'response' => 'ok',
             'message' => 'Éxito'
@@ -182,6 +193,42 @@ class UserProfile extends Controller{
             $notbook->last_parsed_date = date('Y-m-d H:i:ss');
             $notbook->save();
             $result['message'] = 'Actualizado correctamente';
+        }
+        return $result;
+    }
+
+    private function delete_account(){
+        $result = [];
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']){
+            $account = Account::find($_SESSION['pid']);
+            $account->delete();
+            $result['response'] = 'ok';
+        } else {
+            $result['response'] = 'error';
+            $result['message'] = 'Ocurrió un error';
+        }
+        return $result;
+    }
+
+    private function update_profile(){
+        $result = [];
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']){
+            $profile = Profile::find($_SESSION['pid']);
+            if(empty($profile)){
+                $result['response'] = 'error';
+                $result['message'] = 'Cuenta no encontrada';
+            } else {
+                parse_str($_POST['data'], $form);
+                $profile->name = $form['name'];
+                $profile->last_name = $form['last_name'];
+                $profile->birthdate = $form['birthdate'];
+                $profile->save();
+                $result['response'] = 'ok';
+                $result['message'] = 'Datos Actualizados Correctamente';
+            }
+        } else {
+            $result['response'] = 'error';
+            $result['message'] = 'Ocurrió un error en el servidor';
         }
         return $result;
     }

@@ -52,7 +52,7 @@
 <div id="shareModal{$notbook->id}" class="modal green-text">
     <div class="modal-content">
         <h4 class="roboto-light">Enlace para compartir {$notbook->title}</h4>
-        <p onclick="copyPaperclip()">http://{$smarty.server.HTTP_HOST}/view/nid={$notbook->id}</p>
+        <p><a href="http://{$smarty.server.HTTP_HOST}/view/nid={$notbook->id}">http://{$smarty.server.HTTP_HOST}/view/nid={$notbook->id}</a></p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
