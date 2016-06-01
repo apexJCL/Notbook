@@ -7,6 +7,12 @@
         <div class="card custom-card z-depth-1">
             {$notbook->parsed}
         </div>
+        <div class="chip">
+            {$notbook->profile->name}
+        </div>
+        <div class="chip">
+            {$notbook->last_parsed_date}
+        </div>
     </div>
     <div class="row">
         <h5>Comentarios</h5>

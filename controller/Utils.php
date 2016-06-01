@@ -1,5 +1,8 @@
 <?php
 
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 class Utils {
 
     static $default_note = "## ¬book  
@@ -86,6 +89,7 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
         $_SESSION['email'] = $account->email;
         $_SESSION['name'] = $profile->name;
         $_SESSION['pid'] = $profile->id;
+        $_SESSION['isAdmin'] = ProfileRole::isAdmin($account->id);
     }
 
     public static function login($email, $password){
@@ -100,6 +104,19 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
             self::LoginSuccessful($account, $profile);
             return true;
         }
+    }
+
+    public static function html2pdf($htmldoc, $title, $nid, $date){
+        $options = new Options();
+        $options->set('defaultFont', 'Roboto');
+        $options->set('isHtml5ParserEnabled', true);
+        $domPDF = new Dompdf($options);
+        $domPDF->setBasePath(PATH);
+        $domPDF->loadHtml($htmldoc);
+        $domPDF->setPaper('A4', 'portrait');
+        $domPDF->render();
+        file_put_contents(PATH.'/cache/'.$title.'_'.$nid.'_'.$date.'.pdf', $domPDF->output());
+        return '/cache/'.$title.'_'.$nid.'_'.$date.'.pdf';
     }
 
     public static function logout(){

@@ -11,7 +11,7 @@
                 <img class="center-align" src="/img/notbook.png" alt="" style="max-height: 256px">
             </div>
         </div>
-        <div class="fixed-action-btn horizontal click-to-toggle">
+        <div class="fixed-action-btn horizontal">
             <a class="btn-floating btn-large white">
                 <i class="material-icons black-text">menu</i>
             </a>
@@ -21,6 +21,11 @@
                         <i class="material-icons">list</i>
                     </a>
                 </li>
+                {if isset($smarty.session.isAdmin) && $smarty.session.isAdmin == "1"}
+                    <li><a href="/admin" class="btn-floating teal">
+                            <i class="material-icons">autorenew</i>
+                        </a></li>
+                {/if}
                 <li>
                     <a class="btn-floating green modal-trigger" href="#new_notbook_modal">
                         <i class="material-icons">mode_edit</i>

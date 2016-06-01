@@ -100,7 +100,7 @@ en _aprender a desarrollar_...';
         $result = Utils::login($form['email'], $form['password']);
         header('Content type: application/json');
         if($result)
-            echo json_encode(['response' => 'ok', 'location' => '/profile']);
+            echo json_encode(['response' => 'ok', 'location' => '/']);
         else
             echo json_encode(['response' => 'error', 'message' => 'No se pudo iniciar sesión, revise sus credenciales']);
         exit;

@@ -4,6 +4,7 @@
         "erusev/parsedown-extra": "0.7.1",
         "smarty/smarty": "v3.1.29",
         "components/jquery": "2.2.4",
-        "php-activerecord/php-activerecord": "dev-master"
+        "php-activerecord/php-activerecord": "dev-master",
+        "dompdf/dompdf": "v0.7.0"
     }
 }

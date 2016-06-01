@@ -18,14 +18,21 @@ class Viewer extends Controller
 
     private function showNote(){
 
-        $notbook = Notbook::find([
-            'conditions' => [
-                'id' => key($_GET),
-                'private' => false,
-            ]
-        ]);
+        if(!ProfileRole::isAdmin($_SESSION['pid']))
+            $notbook = Notbook::find([
+                'conditions' => [
+                    'id' => key($_GET),
+                    'private' => false,
+                ]
+            ]);
+        else
+            $notbook = Notbook::find([
+                'conditions' => [
+                    'id' => key($_GET)
+                ]
+            ]);
 
-        if (empty($notbook)) {
+        if (empty($notbook) && !ProfileRole::isAdmin($_SESSION['pid'])) {
             // Show Not Found
             $this->display('notfound.tpl');
             exit;
@@ -85,7 +92,7 @@ class Viewer extends Controller
 
     private function delete_comment(){
         $result = [];
-        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']) {
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in'] && !ProfileRole::isAdmin($_SESSION['pid'])) {
             $comment = NotbookComment::find([
                 'conditions' => [
                     'id' => $_POST['cid'],
@@ -93,17 +100,25 @@ class Viewer extends Controller
                     'notbook_id' => $_POST['notbook_id']
                 ]
             ]);
-            if(empty($comment)){
-                $result['response'] = 'error';
-                $result['message'] = 'Comentario no encontrado';
-            } else {
-                $comment->delete();
-                $result['response'] = 'ok';
-                $result['data'] = $this->fetch_comments($_POST['notbook_id']);
-            }
+        } elseif(isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] && ProfileRole::isAdmin($_SESSION['pid'])){
+            $comment = NotbookComment::find([
+                'conditions' => [
+                    'id' => $_POST['cid'],
+                    'notbook_id' => $_POST['notbook_id']
+                ]
+            ]);
         } else {
             $result['response'] = 'error';
             $result['message'] = 'Sucedió un error, intente más tarde';
+        }
+
+        if(empty($comment)){
+            $result['response'] = 'error';
+            $result['message'] = 'Comentario no encontrado';
+        } else {
+            $comment->delete();
+            $result['response'] = 'ok';
+            $result['data'] = $this->fetch_comments($_POST['notbook_id']);
         }
         return $result;
     }

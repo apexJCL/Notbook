@@ -33,6 +33,27 @@ $(document).ready(function () {
             return false;
         }
     });
+
+    $('#pdf').on('click', function () {
+        $.ajax({
+            url: app_url,
+            type: 'POST',
+            data: {
+                'request': 'html2pdf',
+                'nid': actualNote
+            },
+            success: function (data) {
+                var d = $.parseJSON(data);
+                Materialize.toast(d.message, 1000);
+                if(d.response === 'ok')
+                    window.open(window.location.origin+d.url);
+            },
+            error: function () {
+                Materialize.toast('Ocurrió un error en el servidor');
+            }
+        });
+    });
+
     
     private_checkbox.change(function () {
         $.ajax({

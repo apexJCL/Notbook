@@ -69,7 +69,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px">
+            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px"> | Icons by <a href="https://design.google.com/icons/">Google</a>
         </div>
     </div>
 </footer>

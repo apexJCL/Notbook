@@ -36,7 +36,7 @@
                 {$notbook->parsed}
             </div>
         </div>
-        <div id="notproperties" class="">
+        <div id="notproperties" class="container">
             <div class="row">
                 <div class="col s12">
                     <h4 class="roboto-light center-align">Propiedades</h4>
@@ -44,7 +44,11 @@
             </div>
             <div class="row">
                 <div class="col s12">
-                    <i class="material-icons teal-text" id="time">schedule</i>
+                    <label>Creado</label>
+                    <span>{$notbook->created}</span>
+                </div>
+                <div class="col s12">
+                    <label>Última Modificación</label>
                     <span>{$notbook->last_parsed_date}</span>
                 </div>
                 <div class="col s12">
@@ -52,13 +56,18 @@
                         <label>
                             Privado
                             <input type="checkbox" id="private_attribute"
-                                   {if  $notbook->private == "1"}
-                                       checked
-                                   {/if}
+                                    {if  $notbook->private == "1"}
+                                        checked
+                                    {/if}
                             >
                             <span class="lever"></span>
                         </label>
                     </div>
+                </div>
+                <div class="col s12">
+                    <a class="btn-flat waves-effect waves-teal right" id="pdf">
+                        Guardar como PDF
+                    </a>
                 </div>
             </div>
         </div>

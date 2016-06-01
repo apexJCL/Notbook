@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.29, created on 2016-06-01 08:15:01
+/* Smarty version 3.1.29, created on 2016-06-01 16:58:23
   from "/var/www/html/Notbook/view/templates/layout.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.29',
-  'unifunc' => 'content_574edfd5e06291_11043034',
+  'unifunc' => 'content_574f5a7f66ff62_22961843',
   'file_dependency' => 
   array (
     '401e87921bdf2f5c9a3ab65d35cd0a634494d6a5' => 
     array (
       0 => '/var/www/html/Notbook/view/templates/layout.tpl',
-      1 => 1464786893,
+      1 => 1464818286,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
     'file:menu.tpl' => 2,
   ),
 ),false)) {
-function content_574edfd5e06291_11043034 ($_smarty_tpl) {
+function content_574f5a7f66ff62_22961843 ($_smarty_tpl) {
 $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
 ?>
 <!doctype html>
@@ -83,7 +83,7 @@ $_smarty_tpl->ext->_inheritance->init($_smarty_tpl, false);
         <div class="container main-container">
             <?php 
 $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
-  0 => 'block_2033888356574edfd5e034b5_36107916',
+  0 => 'block_1923734727574f5a7f66d432_86753409',
   1 => false,
   3 => 0,
   2 => 0,
@@ -114,7 +114,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px">
+            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px"> | Icons by <a href="https://design.google.com/icons/">Google</a>
         </div>
     </div>
 </footer>
@@ -125,7 +125,7 @@ $_smarty_tpl->ext->_inheritance->processBlock($_smarty_tpl, 0, "body", array (
 </body>
 </html><?php }
 /* {block 'body'}  file:layout.tpl */
-function block_2033888356574edfd5e034b5_36107916($_smarty_tpl, $_blockParentStack) {
+function block_1923734727574f5a7f66d432_86753409($_smarty_tpl, $_blockParentStack) {
 }
 /* {/block 'body'} */
 }

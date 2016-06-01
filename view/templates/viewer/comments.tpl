@@ -20,13 +20,14 @@
     {/if}
     <div class="row">
         {foreach from=$comments item=comment}
-
             <div class="col s12">
                 <div class="card custom-card">
                     <div class="card-title">
                         <span style="font-size: 16pt"><strong>{$comment->profile->name}</strong></span>
                         <span style="font-size: 10pt">{$comment->comment_date}</span>
                         {if isset($smarty.session.pid) && $comment->profile_id == $smarty.session.pid}
+                            <span class="activator"><i class="material-icons right">settings</i></span>
+                        {elseif isset($smarty.session.isAdmin) && $smarty.session.isAdmin == "1"}
                             <span class="activator"><i class="material-icons right">settings</i></span>
                         {/if}
                     </div>
@@ -35,6 +36,15 @@
                         {$comment->comment}
                     </div>
                     {if isset($smarty.session.pid) && $comment->profile_id == $smarty.session.pid}
+                        <div class="card-reveal">
+                            <span class="card-title">
+                                <i class="material-icons right">close</i>
+                            </span>
+                            <a onclick="deleteComment({$comment->id})" class="waves-effect waves-red btn-flat">
+                                <i class="material-icons">delete</i>
+                            </a>
+                        </div>
+                    {elseif isset($smarty.session.isAdmin) && $smarty.session.isAdmin == "1"}
                         <div class="card-reveal">
                             <span class="card-title">
                                 <i class="material-icons right">close</i>

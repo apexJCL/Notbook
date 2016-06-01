@@ -25,7 +25,7 @@
 <body>
 
 <header>
-    <div class="">
+    <div class="navbar-fixed">
         <nav class="black">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo center"><img src="/img/notbook.png" class="logo" alt=""></a>
@@ -49,7 +49,7 @@
     </div>
 </main>
 
-<footer class="page-footer grey">
+<footer class="page-footer black">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
@@ -69,7 +69,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px">
+            <strong>© 2016 José Carlos López</strong> - Made with <img src="/img/pacman.png" alt="" style="max-width: 28px"> | Icons by <a href="https://design.google.com/icons/">Google</a>
         </div>
     </div>
 </footer>
@@ -78,4 +78,5 @@
 <div class="drag-target"
      style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div>
 </body>
+<script src="/app/admin/js/admin.js"></script>
 </html>

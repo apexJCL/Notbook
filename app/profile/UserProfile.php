@@ -52,6 +52,8 @@ class UserProfile extends Controller{
                 breaK;
             case 'delete_account': $result = $this->delete_account();
                 break;
+            case 'html2pdf': $result = $this->html2pdf();
+                break;
         }
         $this->response($result);
     }
@@ -101,6 +103,7 @@ class UserProfile extends Controller{
         $notbook = new Notbook();
         $notbook->profile_id = $_SESSION['pid'];
         $notbook->title = $notbookSettings['title'];
+        $notbook->created = date('Y-m-d H:i:s');
         $notbook->private = isset($notbookSettings['private']);
         $notbook->save();
         $result['response'] = 'ok';
@@ -230,6 +233,28 @@ class UserProfile extends Controller{
             $result['response'] = 'error';
             $result['message'] = 'Ocurrió un error en el servidor';
         }
+        return $result;
+    }
+
+    private function html2pdf(){
+        $result = [];
+        $notbook= Notbook::find([
+            'conditions' => [
+                'id' => $_POST['nid'],
+                'profile_id' => $_SESSION['pid']
+            ]
+        ]);
+        if(empty($notbook)){
+            $result['response'] = 'error';
+            $result['message'] = 'Error al crear el pdf';
+            return $result;
+        }
+        $this->assign('title', $notbook->title);
+        $this->assign('body', $notbook->parsed);
+        $url = Utils::html2pdf($this->smarty->fetch('print.tpl'), $notbook->title, $notbook->id, $notbook->last_parsed_date);
+        $result['response'] = 'ok';
+        $result['message'] = 'PDF Creado Correctamente';
+        $result['url'] = $url;
         return $result;
     }
 }

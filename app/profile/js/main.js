@@ -195,7 +195,6 @@ function hashLocation(url){
             showSettings();
             break;
         default:
-            showNotbooks();
         case 'notbooks':
             showNotbooks();
             break;
