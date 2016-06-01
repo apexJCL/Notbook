@@ -42,6 +42,10 @@ server {
         try_files $uri $uri/ /app/profile/UserProfile.php?$args;
     }
 
+    location /admin {
+            try_files $uri $uri/ /app/admin/Admin.php?$args;
+        }
+
     # pass the PHP scripts to PHP-FPM
     location ~ \.php$ {
         fastcgi_pass unix:<%= ENV['OPENSHIFT_PHP_SOCKET'] %>;
