@@ -37,6 +37,26 @@ $(document).ready(function () {
         });
     });
 
+    $('.logout').click(function () {
+        $.ajax({
+            url: '/app/profile/UserProfile.php',
+            type: 'POST',
+            data: {
+                'request': 'logout'
+            },
+            success: function (data) {
+                var d = $.parseJSON(data);
+                if (d.response === 'ok') {
+                    if (d.redirect == 'true')
+                        document.location.href = "/";
+                }
+            },
+            error: function () {
+                Materialize.toast('Cerrando sesión', 1000);
+            }
+        });
+    });
+
     comment.on('keydown', function (e) {
         if(e.keyCode === 8)
             return true;
