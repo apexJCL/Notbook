@@ -30,3 +30,4 @@ if (getenv('OPENSHIFT_APP_NAME') === false) {
     define('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
     define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
 }
+date_timezone_set('America/Mexico_City');
