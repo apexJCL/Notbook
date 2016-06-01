@@ -131,7 +131,7 @@ class UserProfile extends Controller{
         return $result;
     }
 
-    private function getNotbook(int $nid){
+    private function getNotbook($nid){
         return Notbook::find([
             'conditions' => [
                 'id' => $nid,
