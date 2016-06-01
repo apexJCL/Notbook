@@ -4,6 +4,7 @@ var commentForm;
 var comment;
 var max_letters = 200;
 var actualNote;
+var appURL = '/app/viewer/Viewer.php';
 
 $(document).ready(function () {
 
@@ -21,7 +22,7 @@ $(document).ready(function () {
     commentForm.submit(function (e) {
         e.preventDefault();
         $.ajax({
-            url: '/app/viewer/Viewer.php',
+            url: appURL,
             type: 'POST',
             data: {
                 'request': 'comment',
@@ -79,5 +80,28 @@ function updateOutput(data) {
             hljs.highlightBlock(block);
         });
         commentDisplay.fadeIn('fast');
+    });
+}
+
+function deleteComment(cid) {
+    $.ajax({
+        url: appURL,
+        type: 'POST',
+        data: {
+            'request': 'delete_comment',
+            'cid': cid,
+            'notbook_id': actualNote
+        },
+        success: function (data) {
+            var d = $.parseJSON(data);
+            if(d.response === 'ok'){
+                Materialize.toast('Comentario Eliminado', 2000);
+                updateOutput(d.data);
+            } else
+                Materialize.toast(d.message, 4000);
+        },
+        error: function () {
+            Materialize.toast('Ocurrió un error, inténtelo más tarde', 2500);
+        }
     });
 }

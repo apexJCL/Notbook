@@ -19,6 +19,7 @@
     <!-- Custom css -->
     <link rel="stylesheet" href="/css/main.css">
     <meta charset="UTF-8">
+    <meta name="theme-color" content="#008080" />
     <title>¬book</title>
 </head>
 <body>

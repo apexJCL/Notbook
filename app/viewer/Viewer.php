@@ -57,6 +57,8 @@ class Viewer extends Controller
         switch ($_POST['request']){
             case 'comment':
                 return $this->comment();
+            case 'delete_comment':
+                return $this->delete_comment();
         }
         return null;
     }
@@ -71,14 +73,44 @@ class Viewer extends Controller
             $comment->comment_date = date('Y-m-d H:i:ss');
             $comment->save();
             // Smarty Process
-            $this->assign('comments', NotbookComment::getComments(intval($_POST['nid'])));
-            $result['data'] = $this->fetch('comments.tpl');
+            $result['data'] = $this->fetch_comments($_POST['nid']);
             $result['response'] = 'ok';
 
         } else {
-
+            $result['response'] = 'error';
+            $result['message'] = 'No ha iniciado sesión';
         }
         return $result;
+    }
+
+    private function delete_comment(){
+        $result = [];
+        if(isset($_SESSION['user_logged_in']) && $_SESSION['user_logged_in']) {
+            $comment = NotbookComment::find([
+                'conditions' => [
+                    'id' => $_POST['cid'],
+                    'profile_id' => $_SESSION['pid'],
+                    'notbook_id' => $_POST['notbook_id']
+                ]
+            ]);
+            if(empty($comment)){
+                $result['response'] = 'error';
+                $result['message'] = 'Comentario no encontrado';
+            } else {
+                $comment->delete();
+                $result['response'] = 'ok';
+                $result['data'] = $this->fetch_comments($_POST['notbook_id']);
+            }
+        } else {
+            $result['response'] = 'error';
+            $result['message'] = 'Sucedió un error, intente más tarde';
+        }
+        return $result;
+    }
+
+    private function fetch_comments($nid){
+        $this->assign('comments', NotbookComment::getComments($nid));
+        return $this->fetch('comments.tpl');
     }
 }
 
