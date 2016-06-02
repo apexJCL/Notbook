@@ -9,7 +9,7 @@ if (getenv('OPENSHIFT_APP_NAME') === false) {
     define('TEMPLATES_C', 'templates_c/');
     define('CACHE', 'cache/');
     define('CONFIGS', 'configs/');
-    define('DB_DBMS', 'pgsql');
+    define('DB_DBMS', 'mysql');
     define('DB_DATABASE', 'notbook');
     define('DB_USER', 'reander');
     define('DB_PASSWORD', 'parsing');
@@ -24,7 +24,7 @@ if (getenv('OPENSHIFT_APP_NAME') === false) {
     define('TEMPLATES_C', 'templates_c/');
     define('CACHE', 'cache/');
     define('CONFIGS', 'configs/');
-    define('DB_DBMS', 'pgsql');
+    define('DB_DBMS', 'mysql');
     define('DB_DATABASE', 'notbook');
     if(DB_DBMS == 'mysql'){
         define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));

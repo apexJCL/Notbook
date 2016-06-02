@@ -192,7 +192,7 @@ class UserProfile extends Controller{
         if(empty($notbook))
             $result['message'] = 'Ocurrió un error';
         else {
-            $notbook->private = ($_POST['status'] === 'true');
+            $notbook->private = $_POST['status'];
             $notbook->last_parsed_date = date('Y-m-d H:i:ss');
             $notbook->save();
             $result['message'] = 'Actualizado correctamente';
