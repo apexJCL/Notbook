@@ -29,6 +29,29 @@
                 </div>
             </div>
         </div>
+        <div class="row center-align">
+            <div class="col s7">
+                <div class="card custom-card">
+                    <div class="card-title">
+                        El clima en Celaya:
+                    </div>
+                    <div class="card-content">
+                        <span><img src="{$weather->image->url}" alt=""></span>
+                        <h4>{floor(($weather->item->condition->temp-32)*(5/9))}°</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col s5">
+                <div class="card custom-card">
+                    <div class="card-content">
+                        <pre><code class="markdown">
+#### El clima en Celaya
+![alt text](http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif)
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <hr>
     <div class="section" id="about">

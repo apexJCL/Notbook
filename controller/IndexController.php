@@ -45,6 +45,7 @@ en _aprender a desarrollar_...';
         $this->smarty->assign('about', $parsedown->parse($abt));
         $this->assign('code', $parsedown->parse($code));
         $this->assign('code_unparsed', $code);
+        $this->assign('weather', Utils::weather());
         $this->display("index.tpl");
     }
 

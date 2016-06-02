@@ -1,6 +1,4 @@
 <h4 class="roboto-light">Resultado Búsqueda</h4>
-
-
 <ul class="collapsible" data-collapsible="accordion">
     <li>
         <div class="collapsible-header"><i class="material-icons">account_circle</i>Datos Personales</div>
