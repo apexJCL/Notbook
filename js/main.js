@@ -60,6 +60,7 @@ $(document).ready(function () {
                 'form': registerForm.serialize()
             },
             success: function (data) {
+                console.debug(data);
                 var d = $.parseJSON(data);
                 if(d.response === 'ok'){
                     document.location.href = d.action;

@@ -64,20 +64,22 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
         try{
             $profile = new Profile(['id' => $account->id, 'name' => $name, 'last_name' => $last_name]);
             $profile->save();
-            // Default note
-            $notbook = new Notbook();
-            $notbook->profile_id = $profile->id;
-            $notbook->title = 'Bienvenido';
-            $notbook->unparsed = self::$default_note;
-            $notbook->parsed = self::parseData(self::$default_note);
-            $notbook->save();
             // Designamos el rol
             $profile_role = new ProfileRole();
             $profile_role->profile_id = $profile->id;
             $profile_role->role_id = Role::find_by_role('user')->id;
             $profile_role->save();
+            // Default note
+            $notbook = new Notbook();
+            $notbook->profile_id = $profile->id;
+            $notbook->title = 'Bienvenido';
+            $notbook->created = date('Y-m-d H:i:s');
+            $notbook->unparsed = self::$default_note;
+            $notbook->parsed = self::parseData(self::$default_note);
+            $notbook->save();
             return $profile;
         } catch (Exception $e){
+            echo $e;
             return false;
         }
     }

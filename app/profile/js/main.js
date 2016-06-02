@@ -76,7 +76,8 @@ $(document).ready(function () {
             success: function (data) {
                 var d = $.parseJSON(data);
                 if(d.response === 'ok'){
-                    edit(d.nid);
+                    document.location.href = "/profile#edit#"+d.nid;
+                    hashLocation((window.location.hash).replace('#','').split('#'));
                 }
             },
             error: function (data) {
