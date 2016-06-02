@@ -1,0 +1,2 @@
+#!/bin/bash
+rm ${OPENSHIFT_REPO_DIR}/cache/*.pdf

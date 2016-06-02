@@ -251,7 +251,7 @@ class UserProfile extends Controller{
         }
         $this->assign('title', $notbook->title);
         $this->assign('body', $notbook->parsed);
-        $url = Utils::html2pdf($this->smarty->fetch('print.tpl'), $notbook->title, $notbook->id, $notbook->last_parsed_date);
+        $url = Utils::html2pdf($this->smarty->fetch('print.tpl'), $notbook->title, $notbook->id, $notbook->created);
         $result['response'] = 'ok';
         $result['message'] = 'PDF Creado Correctamente';
         $result['url'] = $url;

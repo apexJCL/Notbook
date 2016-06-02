@@ -34,7 +34,8 @@ $(document).ready(function () {
         }
     });
 
-    $('#pdf').on('click', function () {
+    $('#pdf').on('click', function (e) {
+        e.preventDefault();
         $.ajax({
             url: app_url,
             type: 'POST',
@@ -43,6 +44,7 @@ $(document).ready(function () {
                 'nid': actualNote
             },
             success: function (data) {
+                console.debug(data);
                 var d = $.parseJSON(data);
                 Materialize.toast(d.message, 1000);
                 if(d.response === 'ok')

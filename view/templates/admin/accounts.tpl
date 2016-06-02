@@ -1,6 +1,15 @@
 <h3 class="roboto-light">
     Cuentas
 </h3>
+<h4 class="roboto-light">
+    Todas las cuentas
+</h4>
+{include file="{$baseurl}accountlist.tpl"}
+<div id="account_search_output">
+</div>
+<h3 class="roboto-light">
+    Búsqueda de cuenta
+</h3>
 <form action="#" method="post" id="search_account_form">
     <div class="row">
         <div class="col s12 m6">
@@ -14,6 +23,4 @@
         <i class="material-icons">search</i>
     </button>
 </form>
-<div id="account_search_output">
-</div>
 <script src="/app/admin/js/account.js"></script>

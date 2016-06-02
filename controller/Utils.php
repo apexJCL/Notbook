@@ -71,6 +71,11 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
             $notbook->unparsed = self::$default_note;
             $notbook->parsed = self::parseData(self::$default_note);
             $notbook->save();
+            // Designamos el rol
+            $profile_role = new ProfileRole();
+            $profile_role->profile_id = $profile->id;
+            $profile_role->role_id = Role::find_by_role('user')->id;
+            $profile_role->save();
             return $profile;
         } catch (Exception $e){
             return false;
@@ -78,11 +83,6 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
     }
 
     public static function LoginSuccessful($account, $profile){
-        // Designamos el rol
-        $profile_role = new ProfileRole();
-        $profile_role->profile_id = $profile->id;
-        $profile_role->role_id = Role::find_by_role('user')->id;
-        $profile_role->save();
         // Regeneramos la sesión
         session_regenerate_id(true);
         $_SESSION['user_logged_in'] = true;

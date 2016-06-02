@@ -54,6 +54,8 @@ class Admin extends Controller
                 return $this->profile_update();
             case 'account_update':
                 return $this->account_update();
+            case 'account_page':
+                return $this->account_page();
         }
         return null;
     }
@@ -68,6 +70,8 @@ class Admin extends Controller
         $last_comments = NotbookComment::find_by_sql("SELECT notbook_id, comment, p.name AS name FROM notbook_comments nc JOIN profiles p ON nc.profile_id = p.id  WHERE DATE(comment_date) = CURDATE() LIMIT 10");
         $this->assign('today_notbooks', $amount[0]->total);
         $this->assign('last_comments', $last_comments);
+        $amount = Account::count();
+        $this->assign('amount', $amount);
         $result['response'] = 'ok';
         $result['data'] = $this->fetch('stats.tpl');
         return $result;
@@ -75,6 +79,11 @@ class Admin extends Controller
 
     private function accounts(){
         $result = [];
+        $amount = Account::count();
+        $accounts = Account::find_by_sql("SELECT id, email FROM accounts LIMIT 5");
+        $this->assign('amount', $amount);
+        $this->assign('pages', ceil($amount/5));
+        $this->assign('accounts', $accounts);
         $result['response'] = 'ok';
         $result['data'] = $this->fetch('accounts.tpl');
         return $result;
@@ -92,17 +101,23 @@ class Admin extends Controller
 
     private function search_account(){
         $result =  [];
-        parse_str($_POST['form'], $form);
+        if (isset($_POST['form']))
+            parse_str($_POST['form'], $form);
+        else
+            $form = [];
 
-        if(empty($form['email']) && empty($form['id'])){
+        if(empty($form['email']) && empty($form['id']) && empty($_POST['id'])){
             $result['response'] = 'error';
             $result['message'] = 'No hay datos';
             return $result;
         }
 
-        if(!empty($form['id'])) {
+        if(!empty($form['id']) || !empty($_POST['id'])) {
             try {
-                $account = Account::find($form['id']);
+                if(!empty($form['id']))
+                    $account = Account::find($form['id']);
+                else
+                    $account = Account::find($_POST['id']);
             } catch (Exception $e){
                 $result['response'] = 'error';
                 $result['message'] = 'No se ha encontrado el ID indicado';
@@ -171,6 +186,15 @@ class Admin extends Controller
             $result['response']= 'ok';
             $result['message'] = 'Datos acceso actualizado correctamente';
         }
+        return $result;
+    }
+
+    private function account_page(){
+        $result = [];
+        $accounts = Account::find_by_sql(sprintf("SELECT id, email FROM accounts LIMIT %d,5", $_POST['page']*5));
+        $this->assign('accounts', $accounts);
+        $result['response'] = 'ok';
+        $result['data'] = $this->fetch('account_pager.tpl');
         return $result;
     }
 }

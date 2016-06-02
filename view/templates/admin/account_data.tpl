@@ -7,23 +7,28 @@
         <div class="collapsible-body">
             <div class="container">
                 <form action="#" method="post" id="profile_data_form">
-                    <input type="hidden" id="id" name="id" value="{$profile->id}">
+                    <input type="hidden" id="id" name="id" value="{if !empty($profile)}
+                        {$profile->id}
+                    {/if}">
                     <div class="row">
                         <div class="col s12 m6">
                             <label for="name">Nombre
-                                <input type="text" name="name" value="{$profile->name}">
+                                <input type="text" name="name" value="{if !empty($profile)}
+                                {$profile->name}
+                                {/if}
+                                ">
                             </label>
                         </div>
                         <div class="col s12 m6">
                             <label for="last_name">Apellidos
-                                <input type="text" name="last_name" value="{$profile->last_name}">
+                                <input type="text" name="last_name" value="{if !empty($profile)}{$profile->last_name}"{/if}>
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 m6">
                             <label for="birthdate">Fecha Nacimiento</label>
-                            <input type="date" name="birthdate" data-value='{$profile->birthdate|date_format:"%Y-%m-%d"}' class="datepicker">
+                            <input type="date" name="birthdate" data-value='{if !empty($profile)}{$profile->birthdate|date_format:"%Y-%m-%d"}{/if}' class="datepicker">
                         </div>
                         <div class="col s12 m6">
                             <button class="btn green waves-effect">
