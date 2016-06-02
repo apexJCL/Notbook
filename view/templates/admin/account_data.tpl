@@ -7,15 +7,11 @@
         <div class="collapsible-body">
             <div class="container">
                 <form action="#" method="post" id="profile_data_form">
-                    <input type="hidden" id="id" name="id" value="{if !empty($profile)}
-                        {$profile->id}
-                    {/if}">
+                    <input type="hidden" id="id" name="id" value="{if !empty($profile)}{$profile->id} {/if}">
                     <div class="row">
                         <div class="col s12 m6">
                             <label for="name">Nombre
-                                <input type="text" name="name" value="{if !empty($profile)}
-                                {$profile->name}
-                                {/if}
+                                <input type="text" name="name" value="{if !empty($profile)}{$profile->name}{/if}
                                 ">
                             </label>
                         </div>

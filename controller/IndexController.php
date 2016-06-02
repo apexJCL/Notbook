@@ -66,18 +66,23 @@ en _aprender a desarrollar_...';
     private function register(){
         $result = [];
         parse_str($_POST['form'], $data);
+        Account::connection()->transaction();
         $account = Utils::register($data['email'], $data['password'], $data['password_ver']);
         if($account instanceof Account){
             $profile = Utils::create_profile($data['name'], $data['last_name'], $account);
             if($profile instanceof Profile){
+                Utils::assign_role($profile->id, 'user');
+                Account::connection()->commit();
                 Utils::LoginSuccessful($account, $profile);
                 $result['response'] = 'ok';
                 $result['action'] = '/profile/';
             } else {
+                Account::connection()->rollback();
                 $result['response'] = 'error';
                 $result['message'] = 'Ocurrió un error al crear su perfil, contacte al administrador';
             }
         } else {
+            Account::connection()->rollback();
             $result['response'] = 'error';
             switch ($account){
                 case -1:

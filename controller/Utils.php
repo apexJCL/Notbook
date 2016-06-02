@@ -64,11 +64,6 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
         try{
             $profile = new Profile(['id' => $account->id, 'name' => $name, 'last_name' => $last_name]);
             $profile->save();
-            // Designamos el rol
-            $profile_role = new ProfileRole();
-            $profile_role->profile_id = $profile->id;
-            $profile_role->role_id = Role::find_by_role('user')->id;
-            $profile_role->save();
             // Default note
             $notbook = new Notbook();
             $notbook->profile_id = $profile->id;
@@ -82,6 +77,14 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
             echo $e;
             return false;
         }
+    }
+    
+    public static function assign_role($aid, $role){
+        // Designamos el rol
+        $profile_role = new ProfileRole();
+        $profile_role->profile_id = $aid;
+        $profile_role->role_id = Role::find_by_role($role)->id;
+        //$profile_role->save();
     }
 
     public static function LoginSuccessful($account, $profile){

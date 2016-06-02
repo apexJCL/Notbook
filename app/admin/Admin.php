@@ -66,8 +66,14 @@ class Admin extends Controller
 
     private function stats(){
         $result = [];
-        $amount = Notbook::find_by_sql("SELECT COUNT(*) AS total FROM notbooks WHERE DATE(created) = CURDATE()");
-        $last_comments = NotbookComment::find_by_sql("SELECT notbook_id, comment, p.name AS name FROM notbook_comments nc JOIN profiles p ON nc.profile_id = p.id  WHERE DATE(comment_date) = CURDATE() LIMIT 10");
+        if(DB_DBMS == 'mysql') {
+            $amount = Notbook::find_by_sql("SELECT COUNT(*) AS total FROM notbooks WHERE DATE(created) = CURDATE()");
+            $last_comments = NotbookComment::find_by_sql("SELECT notbook_id, comment, p.name AS name FROM notbook_comments nc JOIN profiles p ON nc.profile_id = p.id  WHERE DATE(comment_date) = CURDATE() LIMIT 10");
+        }
+        else {
+            $amount = Notbook::find_by_sql("SELECT COUNT(*) AS total FROM notbooks WHERE DATE(created) = CURRENT_DATE");
+            $last_comments = NotbookComment::find_by_sql("SELECT notbook_id, comment, p.name AS name FROM notbook_comments nc JOIN profiles p ON nc.profile_id = p.id  WHERE DATE(comment_date) = CURRENT_DATE LIMIT 10");
+        }
         $this->assign('today_notbooks', $amount[0]->total);
         $this->assign('last_comments', $last_comments);
         $amount = Account::count();
