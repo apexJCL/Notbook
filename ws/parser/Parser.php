@@ -17,9 +17,6 @@ class Parser {
                     $obj = json_decode(file_get_contents("php://input"));
                     self::parseService($obj);
                     break;
-                case 'GET':
-                    echo 'GET';
-                    break;
                 default:
                     exit;
             }

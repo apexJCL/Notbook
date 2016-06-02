@@ -21,6 +21,7 @@ class Accounts extends BaseWS {
                 $this->update_password();
                 break;
             case 'DELETE':
+                $this->delete_account();
                 break;
         }
     }
@@ -172,6 +173,47 @@ class Accounts extends BaseWS {
         $affected_account->password = md5($params->password);
         $affected_account->save();
         $this->response(200, "Ok", "Contraseña actualizada correctamente");
+    }
+
+    /**
+     * Elimina una cuenta, con permisos de administrador
+     *
+     * {
+     *      "email",
+     *      "admin_email",
+     *      "admin_passwd"
+     * }
+     *
+     */
+    private function delete_account(){
+        $params = json_decode(file_get_contents("php://input"));
+        if(empty($params))
+            $this->response(400, "error", "No hay datos");
+        elseif(!isset($params->email) || !isset($params->admin_email) || !isset($params->admin_passwd))
+            $this->response(400, "error", "Datos incompletos");
+
+        $account = Account::find([
+            'conditions' => [
+                'email' => $params->admin_email,
+                'password' => md5($params->admin_passwd)
+            ]
+        ]);
+
+        if(empty($account))
+            $this->response(400, "Error", "Datos incompletos");
+        elseif(!ProfileRole::isAdmin($account->id))
+            $this->response(401, "Error", "Acceso Denegado");
+
+        $affected_account = Account::find([
+            'conditions' => [
+                'email' => $params->email
+            ]
+        ]);
+
+        if(empty($affected_account))
+            $this->response(404, "error", "Cuenta no encontrada");
+        $affected_account->delete();
+        $this->response(200, "Ok", "Cuenta eliminada correctamente");
     }
 
 }
