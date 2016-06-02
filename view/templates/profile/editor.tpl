@@ -64,9 +64,16 @@
                         </label>
                     </div>
                 </div>
-                <div class="col s12">
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
                     <a class="btn-flat waves-effect waves-teal right" id="pdf">
                         Guardar como PDF
+                    </a>
+                </div>
+                <div class="col s12 m6">
+                    <a class="btn-flat waves-effect waves-teal right" id="xml">
+                        Guardar como XML
                     </a>
                 </div>
             </div>

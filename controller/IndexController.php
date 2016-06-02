@@ -7,6 +7,12 @@ class IndexController extends Controller{
 
         parent::__construct('index');
 
+        /*
+        $client = new nusoap_client('http://www.webservicex.net/country.asmx?WSDL', 'wsdl');
+        $response = $client->call('GetCurrencyByCountry', ['CountryName' => 'Mexico']);
+        echo get_class($response);
+        */
+
         if(isset($_SESSION['user_logged_in'])) {
             if($_SESSION['user_logged_in']) {
                 if(ProfileRole::isAdmin($_SESSION['pid']))

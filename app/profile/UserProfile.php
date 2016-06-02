@@ -54,6 +54,8 @@ class UserProfile extends Controller{
                 break;
             case 'html2pdf': $result = $this->html2pdf();
                 break;
+            case 'notbook2xml': $result = $this->notbook2xml();
+                break;
         }
         $this->response($result);
     }
@@ -255,6 +257,19 @@ class UserProfile extends Controller{
         $result['response'] = 'ok';
         $result['message'] = 'PDF Creado Correctamente';
         $result['url'] = $url;
+        return $result;
+    }
+
+    private function notbook2xml(){
+        $result = [];
+        if(!isset($_POST['nid'])){
+            $result['response'] = 'error';
+            $result['message'] = 'Error, ID de nota no especificado';
+        } else {
+            $result['response'] = 'ok';
+            $result['message'] = 'XML Creado Correctamente';
+            $result['url'] = Utils::notbook2xml($_POST['nid']);
+        }
         return $result;
     }
 }

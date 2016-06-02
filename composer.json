@@ -5,6 +5,7 @@
         "smarty/smarty": "v3.1.29",
         "components/jquery": "2.2.4",
         "php-activerecord/php-activerecord": "dev-master",
-        "dompdf/dompdf": "v0.7.0"
+        "dompdf/dompdf": "v0.7.0",
+        "deviservi/nusoap": "v1.123"
     }
 }

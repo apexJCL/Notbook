@@ -178,4 +178,7 @@ return array(
     'TPC_yyToken' => $vendorDir . '/smarty/smarty/libs/sysplugins/smarty_internal_configfileparser.php',
     'TP_yyStackEntry' => $vendorDir . '/smarty/smarty/libs/sysplugins/smarty_internal_templateparser.php',
     'TP_yyToken' => $vendorDir . '/smarty/smarty/libs/sysplugins/smarty_internal_templateparser.php',
+    'nusoap_base' => $vendorDir . '/deviservi/nusoap/lib/nusoap.php',
+    'nusoap_client' => $vendorDir . '/deviservi/nusoap/lib/nusoap.php',
+    'soapclient' => $vendorDir . '/deviservi/nusoap/lib/nusoap.php',
 );

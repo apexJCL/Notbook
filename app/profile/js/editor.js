@@ -44,6 +44,27 @@ $(document).ready(function () {
                 'nid': actualNote
             },
             success: function (data) {
+                var d = $.parseJSON(data);
+                Materialize.toast(d.message, 1000);
+                if(d.response === 'ok')
+                    window.open(window.location.origin+d.url);
+            },
+            error: function () {
+                Materialize.toast('Ocurrió un error en el servidor');
+            }
+        });
+    });
+
+    $('#xml').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: app_url,
+            type: 'POST',
+            data: {
+                'request': 'notbook2xml',
+                'nid': actualNote
+            },
+            success: function (data) {
                 console.debug(data);
                 var d = $.parseJSON(data);
                 Materialize.toast(d.message, 1000);

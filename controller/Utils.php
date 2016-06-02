@@ -149,4 +149,25 @@ Conforme se avance, se irán agregando características, como compartir ¬book's
         $phpObj =  json_decode($json);
         return $phpObj->query->results->channel;
     }
+
+    public static function notbook2xml($nid){
+        $result = Notbook::find($nid);
+        if(empty($result))
+            return null;
+        $tree = new DOMDocument('1.0', 'UTF-8');
+        $root = $tree->createElement("xml");
+        $root = $tree->appendChild($root);
+        // Creamos el notbook
+        $notbook = $tree->createElement("notbook");
+        $notbook = $root->appendChild($notbook);
+        // Agregamos los datos al notbook
+        $notbook->appendChild($tree->createElement('title', $result->title));
+        $notbook->appendChild($tree->createElement('parsed_text', $result->parsed));
+        $notbook->appendChild($tree->createElement('unparsed_text', $result->unparsed));
+        $notbook->appendChild($tree->createElement('created', $result->created));
+        $notbook->appendChild($tree->createElement('last_parsed_date', $result->last_parsed_date));
+        $output = $tree->saveXML();
+        file_put_contents(PATH.'/cache/'.$result->title.'_'.$nid.'_'.$result->last_parsed_date.'.xml', $output);
+        return '/cache/'.$result->title.'_'.$nid.'_'.$result->last_parsed_date.'.xml';
+    }
 }

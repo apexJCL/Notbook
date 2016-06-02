@@ -225,6 +225,9 @@ class ComposerStaticInitfc742b207b0c1405d591bc9decd3a964
         'TPC_yyToken' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_configfileparser.php',
         'TP_yyStackEntry' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_templateparser.php',
         'TP_yyToken' => __DIR__ . '/..' . '/smarty/smarty/libs/sysplugins/smarty_internal_templateparser.php',
+        'nusoap_base' => __DIR__ . '/..' . '/deviservi/nusoap/lib/nusoap.php',
+        'nusoap_client' => __DIR__ . '/..' . '/deviservi/nusoap/lib/nusoap.php',
+        'soapclient' => __DIR__ . '/..' . '/deviservi/nusoap/lib/nusoap.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
