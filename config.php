@@ -24,13 +24,13 @@ if (getenv('OPENSHIFT_APP_NAME') === false) {
     define('TEMPLATES_C', 'templates_c/');
     define('CACHE', 'cache/');
     define('CONFIGS', 'configs/');
-    define('DB_DBMS', 'mysql');
+    define('DB_DBMS', 'pgsql');
     define('DB_DATABASE', 'notbook');
     if(DB_DBMS == 'mysql'){
         define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
         define('DB_PASSWORD', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
         define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
-    } elseif (DB_DBMS == 'psql'){
+    } elseif (DB_DBMS == 'pgsql'){
         define('DB_USER', getenv('OPENSHIFT_POSTGRESQL_DB_USERNAME'));
         define('DB_PASSWORD', getenv('OPENSHIFT_POSTGRESQL_DB_PASSWORD'));
         define('DB_HOST', getenv('OPENSHIFT_POSTGRESQL_DB_HOST'));
